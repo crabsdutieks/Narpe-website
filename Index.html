@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>$NARPE — Deep-Sea Meme on Abstract</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{narpe:{teal:'#16c7be',deep:'#0b1833',gold:'#f6c453'}},fontFamily:{display:['Lilita One','system-ui'],sans:['Inter','system-ui']}}}}</script>
+  <style>.headline-outline{text-shadow:2px 2px 0 #000,-2px 2px 0 #000,2px -2px 0 #000,-2px -2px 0 #000}</style>
+  <meta property="og:title" content="$NARPE — Deep-Sea Meme on Abstract">
+  <meta property="og:description" content="Pierce the charts. Ride the wave. $NARPE">
+  <meta property="og:image" content="YOUR_OG_IMAGE_1200x630.png">
+  <meta name="theme-color" content="#16c7be">
+</head>
+<body class="bg-[#0b1833] text-white font-sans">
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30" style="background:radial-gradient(900px 480px at 70% 20%,rgba(22,199,190,.6),transparent 60%),radial-gradient(700px 360px at 20% 80%,rgba(246,196,83,.5),transparent 60%);"></div>
+    <div class="relative max-w-6xl mx-auto px-4 py-12 lg:py-20 grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="font-display text-5xl sm:text-6xl leading-tight headline-outline">
+          $NARPE <span class="block text-narpe-teal">Pierce the charts. Ride the wave.</span>
+        </h1>
+        <p class="mt-5 text-lg text-white/85">
+          The deep-sea meme on <b>Abstract</b>. Clean site, clean vibes, pure meme energy.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="YOUR_BUY_LINK" class="px-5 py-3 rounded-xl bg-narpe-teal text-[#0b1833] font-extrabold">Buy $NARPE</a>
+          <a href="YOUR_CHART_LINK" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15">Chart</a>
+          <a href="YOUR_TWITTER" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15">X / Twitter</a>
+          <a href="YOUR_TELEGRAM" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15">Telegram</a>
+        </div>
+        <div class="mt-6">
+          <div class="text-sm text-white/70">Contract</div>
+          <div class="mt-1 flex items-center gap-2">
+            <code id="addr" class="text-sm bg-black/40 px-3 py-2 rounded-lg border border-white/10">YOUR_CONTRACT_ADDRESS</code>
+            <button onclick="navigator.clipboard.writeText(document.getElementById('addr').textContent.trim())" class="text-xs px-3 py-2 rounded-lg bg-[#f6c453] text-black font-bold">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Remplace par ton visuel -->
+        <img src="YOUR_HERO.png" alt="narwhal hero" class="w-full rounded-2xl border border-white/10 shadow-2xl">
+      </div>
+    </div>
+  </header>
+
+  <section class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+    <h2 class="font-display text-3xl sm:text-4xl mb-6">Why $NARPE</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6"><h3 class="font-extrabold mb-1">Culture</h3><p class="text-white/80 text-sm">Banquise meta, ocean vibes, memes that spread.</p></div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6"><h3 class="font-extrabold mb-1">Simplicity</h3><p class="text-white/80 text-sm">Straightforward calls to action. No fluff.</p></div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6"><h3 class="font-extrabold mb-1">Community</h3><p class="text-white/80 text-sm">Shill kit + shareable assets to flood X.</p></div>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+    <h2 class="font-display text-3xl sm:text-4xl mb-6">How to buy</h2>
+    <ol class="space-y-4">
+      <li class="bg-white/5 rounded-2xl p-5 border border-white/10"><b>1)</b> Get a wallet (Phantom/Rabby) on Abstract.</li>
+      <li class="bg-white/5 rounded-2xl p-5 border border-white/10"><b>2)</b> Open the chart → Trade.</li>
+      <li class="bg-white/5 rounded-2xl p-5 border border-white/10"><b>3)</b> Swap and join the wave. $NARPE</li>
+    </ol>
+  </section>
+
+  <footer class="mt-10 border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/60 text-sm">© <span id="y"></span> NARPE — Not financial advice</p>
+      <div class="flex gap-3">
+        <a href="YOUR_TWITTER" class="text-white/80 hover:text-white">Twitter</a>
+        <a href="YOUR_TELEGRAM" class="text-white/80 hover:text-white">Telegram</a>
+        <a href="mailto:team@narpe.xyz" class="text-white/80 hover:text-white">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
