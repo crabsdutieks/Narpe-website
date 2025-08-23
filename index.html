@@ -19,10 +19,7 @@
             display:['Luckiest Guy','system-ui','sans-serif'],
             sans:['Inter','system-ui','sans-serif']
           },
-          dropShadow: {
-            cartoon: '0 3px 0 rgba(0,0,0,.45)',
-            glow: '0 10px 30px rgba(106,0,255,.35)'
-          }
+          dropShadow: { cartoon: '0 3px 0 rgba(0,0,0,.45)' }
         }
       }
     }
@@ -30,239 +27,180 @@
 
   <!-- Social share -->
   <meta property="og:title" content="$NARR — Ride the Meme Wave">
-  <meta property="og:description" content="A community-driven memecoin on Abstract. Weekly events & giveaways, collabs, and a future Dapp.">
+  <meta property="og:description" content="A community driven memecoin on Abstract. Weekly events & giveaways, collabs, and a future Dapp.">
   <meta property="og:image" content="og_narpe.jpg">
-  <meta name="theme-color" content="#6a00ff">
+  <meta name="theme-color" content="#000000">
 
   <style>
+    /* Header background: subtle gradient + your image */
     .hero-bg{
       background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(106,0,255,.35), transparent 60%),
-        radial-gradient(900px 600px at 90% 20%, rgba(22,199,190,.35), transparent 60%),
-        linear-gradient(180deg, rgba(0,31,77,.9), rgba(0,31,77,.55) 45%, rgba(0,31,77,.85)),
+        linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.6)),
         url('narpe_background.jpeg') center/cover no-repeat;
-    }
-    .glass { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.15); }
-    .soft-border { border:1px solid rgba(255,255,255,.12); }
-    .badge { background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); }
-    .marquee-track { animation: marquee 20s linear infinite; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
     }
   </style>
 </head>
-<body class="bg-narpe-deep text-white font-sans">
+<body class="bg-black text-white font-sans">
 
   <!-- NAV -->
   <nav class="fixed top-0 inset-x-0 z-50">
-    <div class="mx-auto max-w-6xl px-4">
-      <div class="mt-3 backdrop-blur-xl glass rounded-2xl px-4 py-3 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="mt-3 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl px-4 py-3 flex items-center justify-between">
         <a href="#top" class="flex items-center gap-3">
-          <img src="narpe_blank_1.png" alt="$NARR" class="w-9 h-9 object-contain">
+          <img src="narpe_blank_1.png" alt="$NARR" class="w-8 h-8 object-contain">
           <span class="font-display tracking-wide">$NARR</span>
         </a>
         <div class="hidden md:flex items-center gap-5 text-sm">
           <a href="#what" class="hover:text-narpe-teal">About</a>
           <a href="#features" class="hover:text-narpe-teal">Features</a>
-          <a href="#roadmap" class="hover:text-narpe-teal">Roadmap</a>
+          <a href="#playbook" class="hover:text-narpe-teal">Playbook</a>
           <a href="#join" class="hover:text-narpe-teal">Join</a>
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="ml-2 px-4 py-2 rounded-xl bg-narpe-teal text-narpe-deep font-semibold drop-shadow-cartoon hover:scale-[1.02] transition">
-            DEXScreener
+          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
+             class="ml-2 px-4 py-2 rounded-xl bg-narpe-teal text-narpe-deep font-semibold hover:opacity-95 transition">
+             DEXScreener
           </a>
         </div>
-        <button id="mobBtn" class="md:hidden px-3 py-2 rounded-xl soft-border">Menu</button>
+        <button id="mobBtn" class="md:hidden px-3 py-2 rounded-xl border border-white/15">Menu</button>
       </div>
     </div>
+    <!-- Mobile menu -->
     <div id="mobMenu" class="hidden md:hidden mx-auto max-w-6xl px-4">
-      <div class="mt-2 backdrop-blur-xl glass rounded-2xl px-4 py-3 grid gap-2">
+      <div class="mt-2 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl px-4 py-3 grid gap-2">
         <a href="#what" class="py-2">About</a>
         <a href="#features" class="py-2">Features</a>
-        <a href="#roadmap" class="py-2">Roadmap</a>
+        <a href="#playbook" class="py-2">Playbook</a>
         <a href="#join" class="py-2">Join</a>
         <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="mt-1 px-4 py-2 rounded-xl bg-narpe-teal text-narpe-deep font-semibold">DEXScreener</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header id="top" class="pt-28 pb-8 md:pt-32 md:pb-16 hero-bg">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+  <!-- HEADER / HERO -->
+  <header id="top" class="relative hero-bg pt-28 pb-10 md:pt-32 md:pb-16">
+    <!-- Soft overlay so text stays readable -->
+    <div class="absolute inset-0"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
+      <!-- Title + CTAs -->
       <div>
-        <div class="inline-flex items-center gap-2 badge rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-narpe-teal">
-          Abstract Chain • Community-first
+        <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-narpe-teal bg-white/5 border border-white/10 rounded-full px-3 py-1">
+          Abstract • Community-first
         </div>
-        <h1 class="mt-4 font-display text-5xl sm:text-6xl leading-tight drop-shadow-glow">
+        <h1 class="mt-4 font-display text-5xl sm:text-6xl leading-tight">
           Ride the Meme Wave
-          <span class="block text-narpe-teal">$NARR on Abstract</span>
+          <span class="block text-narpe-teal drop-shadow-cartoon">$NARR on Abstract</span>
         </h1>
-        <p class="mt-5 text-white/90 text-lg max-w-xl">
+
+        <p class="mt-5 text-lg text-white/90 max-w-xl">
           A community driven memecoin on the Abstract chain. The narwhal taking on the penguin meta with fast visuals, faster memes and real momentum.
         </p>
 
+        <!-- Chain + CA -->
         <div class="mt-6 flex flex-wrap items-center gap-3">
-          <span class="text-sm text-white/85 badge rounded-full px-3 py-1">Chain: <span class="font-semibold ml-1">Abstract</span></span>
-          <span class="text-sm text-white/85 badge rounded-full px-3 py-1 flex items-center gap-2">
+          <span class="text-sm text-white/85 bg-white/5 border border-white/10 rounded-full px-3 py-1">
+            Chain: <span class="font-semibold ml-1">Abstract</span>
+          </span>
+          <span class="text-sm text-white/85 bg-white/5 border border-white/10 rounded-full px-3 py-1 flex items-center gap-2">
             CA: <code id="ca" class="bg-black/40 px-1.5 py-0.5 rounded border border-white/10">TBA</code>
             <button onclick="copyCA()" class="text-xs px-2 py-1 rounded bg-narpe-gold text-black font-bold hover:opacity-90 transition">Copy</button>
           </span>
         </div>
 
+        <!-- Main CTAs -->
         <div class="mt-7 flex flex-wrap gap-3">
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="px-5 py-3 rounded-xl bg-narpe-teal text-narpe-deep font-extrabold drop-shadow-cartoon hover:scale-[1.02] transition">DEXScreener</a>
-          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Twitter / X</a>
-          <a href="https://t.me/NarrTheNarwhalonabs" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Telegram</a>
+          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="px-5 py-3 rounded-xl bg-narpe-teal text-narpe-deep font-extrabold hover:opacity-95 transition">DEXScreener</a>
+          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Twitter / X</a>
+          <a href="https://t.me/NarrTheNarwhalonabs" class="px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Telegram</a>
         </div>
       </div>
 
+      <!-- Foreground hero visual -->
       <div class="relative">
-        <!-- glow -->
-        <div class="absolute -inset-6 rounded-3xl blur-3xl opacity-30" style="background: radial-gradient(40% 40% at 60% 40%, rgba(22,199,190,.45), transparent 60%);"></div>
-        <img src="narpe_blank_1.png" alt="Narwhal hero" class="relative w-full rounded-2xl shadow-2xl object-contain bg-transparent">
-      </div>
-    </div>
-
-    <!-- Stats row -->
-    <div class="max-w-6xl mx-auto px-4 mt-10">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="glass rounded-2xl p-4 text-center">
-          <div class="text-xs uppercase tracking-wider text-white/70">Holders</div>
-          <div class="text-2xl font-extrabold mt-1">—</div><!-- put live value later -->
-        </div>
-        <div class="glass rounded-2xl p-4 text-center">
-          <div class="text-xs uppercase tracking-wider text-white/70">Market Cap</div>
-          <div class="text-2xl font-extrabold mt-1">—</div>
-        </div>
-        <div class="glass rounded-2xl p-4 text-center">
-          <div class="text-xs uppercase tracking-wider text-white/70">Liquidity</div>
-          <div class="text-2xl font-extrabold mt-1">—</div>
-        </div>
-        <div class="glass rounded-2xl p-4 text-center">
-          <div class="text-xs uppercase tracking-wider text-white/70">Events / Week</div>
-          <div class="text-2xl font-extrabold mt-1">1+</div>
-        </div>
+        <img src="narpe_blank_1.png" alt="Narwhal hero" class="w-full rounded-2xl shadow-2xl object-contain bg-transparent">
       </div>
     </div>
   </header>
 
-  <!-- MARQUEE (partners / friends placeholders) -->
-  <section class="py-6 soft-border border-x-0 border-b-0">
-    <div class="overflow-hidden">
-      <div class="marquee-track whitespace-nowrap">
-        <span class="mx-8 text-white/70">Abstract •</span>
-        <span class="mx-8 text-white/70">Community Raids •</span>
-        <span class="mx-8 text-white/70">Weekly Giveaways •</span>
-        <span class="mx-8 text-white/70">Collabs •</span>
-        <span class="mx-8 text-white/70">$NARR •</span>
-        <span class="mx-8 text-white/70">Abstract •</span>
-        <span class="mx-8 text-white/70">Community Raids •</span>
-        <span class="mx-8 text-white/70">Weekly Giveaways •</span>
-        <span class="mx-8 text-white/70">Collabs •</span>
-        <span class="mx-8 text-white/70">$NARR •</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="what" class="max-w-6xl mx-auto px-4 py-14 lg:py-20">
-    <div class="grid md:grid-cols-2 gap-8 items-start">
-      <div class="glass rounded-3xl p-8">
-        <h2 class="font-display text-3xl sm:text-4xl mb-3 text-narpe-teal">What $NARR Is</h2>
-        <p class="text-white/90 text-lg leading-relaxed">
+  <!-- CONTENT SECTIONS -->
+  <main>
+    <!-- What $NARR Is -->
+    <section id="what" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">What $NARR Is</h2>
+      <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
+        <p class="text-white/90">
           A community driven token built for speed, with sharp visuals, relentless memes and a character you can spot from a mile away. No corporate fluff, just culture, momentum and a crew that ships.
         </p>
       </div>
-      <div class="glass rounded-3xl p-8">
-        <h3 class="font-display text-3xl sm:text-4xl mb-3 text-narpe-teal">The Counter Meta</h3>
-        <p class="text-white/90 leading-relaxed">
+    </section>
+
+    <!-- The Counter Meta -->
+    <section id="countermeta" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Counter Meta</h2>
+      <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
+        <p class="text-white/90">
           Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. <span class="font-semibold">$NARR</span> arrived. If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
         </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FEATURES -->
-  <section id="features" class="max-w-6xl mx-auto px-4 py-14 lg:py-20">
-    <h2 class="font-display text-3xl sm:text-4xl mb-8 text-narpe-teal">Planned Features</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="rounded-3xl p-6 glass">
-        <div class="text-narpe-gold font-extrabold mb-2">Weekly Events & Giveaways</div>
-        <p class="text-white/85 text-sm">Raids, contests, surprises. Every week is a new wave.</p>
+    <!-- The Legend -->
+    <section id="legend" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Legend</h2>
+      <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
+        <p class="text-white/90">
+          On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current. Every chart is water and water belongs to the narwhal.
+        </p>
       </div>
-      <div class="rounded-3xl p-6 glass">
-        <div class="text-narpe-gold font-extrabold mb-2">Collabs & Community Raids</div>
-        <p class="text-white/85 text-sm">Cross-project stunts with Abstract friends, coordinated meme raids and playful rivalry with the penguin crowd.</p>
-      </div>
-      <div class="rounded-3xl p-6 glass">
-        <div class="text-narpe-gold font-extrabold mb-2">Future Dapp</div>
-        <p class="text-white/85 text-sm">A major Dapp in the works — details to be revealed soon.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ROADMAP / TIMELINE -->
-  <section id="roadmap" class="max-w-6xl mx-auto px-4 py-14 lg:py-20">
-    <h2 class="font-display text-3xl sm:text-4xl mb-8 text-narpe-teal">Roadmap</h2>
-    <div class="relative">
-      <div class="absolute left-4 sm:left-1/2 sm:-translate-x-1/2 top-0 bottom-0 w-px bg-white/10"></div>
-      <div class="grid gap-6">
-        <!-- Q1 -->
-        <div class="sm:grid sm:grid-cols-2 sm:items-center gap-6">
-          <div class="sm:text-right sm:pr-10">
-            <div class="inline-block badge rounded-full px-3 py-1 text-xs font-semibold mb-2">Phase 1</div>
-            <h3 class="text-xl font-semibold mb-1">Launch & Community</h3>
-            <p class="text-white/80 text-sm">Site v2, socials live, first weekly events, first collabs.</p>
-          </div>
-          <div class="glass rounded-2xl p-5">Kickoff giveaways • Meme raids • Holder roles</div>
+    <!-- Planned Features -->
+    <section id="features" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+      <h2 class="font-display text-3xl sm:text-4xl mb-6 text-narpe-teal">Planned Features</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
+          <div class="text-narpe-gold font-extrabold mb-2">Weekly Events &amp; Giveaways</div>
+          <p class="text-white/85 text-sm">Raids, contests, surprises. Every week is a new wave.</p>
         </div>
-        <!-- Q2 -->
-        <div class="sm:grid sm:grid-cols-2 sm:items-center gap-6">
-          <div class="order-2 sm:order-1 glass rounded-2xl p-5">Mini-game v1 (off-chain) • Public leaderboard • Merch drop</div>
-          <div class="order-1 sm:order-2 sm:pl-10">
-            <div class="inline-block badge rounded-full px-3 py-1 text-xs font-semibold mb-2">Phase 2</div>
-            <h3 class="text-xl font-semibold mb-1">Games & Growth</h3>
-            <p class="text-white/80 text-sm">Monthly mini-games and weekly winners with public shout-outs.</p>
-          </div>
+        <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
+          <div class="text-narpe-gold font-extrabold mb-2">Collabs &amp; Community Raids</div>
+          <p class="text-white/85 text-sm">Cross-project stunts with Abstract friends, coordinated meme raids and playful rivalry with the penguin crowd.</p>
         </div>
-        <!-- Q3 -->
-        <div class="sm:grid sm:grid-cols-2 sm:items-center gap-6">
-          <div class="sm:text-right sm:pr-10">
-            <div class="inline-block badge rounded-full px-3 py-1 text-xs font-semibold mb-2">Phase 3</div>
-            <h3 class="text-xl font-semibold mb-1">Dapp & Expansion</h3>
-            <p class="text-white/80 text-sm">Collabs scale up; early Dapp reveal; ecosystem moments.</p>
-          </div>
-          <div class="glass rounded-2xl p-5">Partner quests • Surprise drops • Bigger prizes</div>
+        <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
+          <div class="text-narpe-gold font-extrabold mb-2">Future Dapp</div>
+          <p class="text-white/85 text-sm">Major Dapp in the works, with details to be revealed soon.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA BAND -->
-  <section id="join" class="max-w-6xl mx-auto px-4 pb-16">
-    <div class="rounded-3xl p-1" style="background: linear-gradient(135deg, rgba(22,199,190,.35), rgba(255,255,255,.05), rgba(106,0,255,.35));">
-      <div class="rounded-[22px] bg-white/5 backdrop-blur-xl border border-white/15 p-8 lg:p-10">
-        <h2 class="font-display text-3xl sm:text-4xl leading-tight text-white mb-4">
-          Join the Pod
-        </h2>
+    <!-- The Playbook -->
+    <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Playbook</h2>
+      <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
+        <p class="text-white/90">
+          Run weekly events. Drop surprise giveaways. Highlight the best community posts. Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
+        </p>
+      </div>
+    </section>
+
+    <!-- Join -->
+    <section id="join" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
+      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">Join the Pod</h2>
+      <div class="rounded-2xl bg-black/40 border border-white/10 p-6">
         <p class="text-white/90 text-lg leading-relaxed max-w-3xl">
           We will not promise the world — we will flood the timeline. <span class="font-semibold">$NARR</span> turns holders into a pod that is loud, loyal and impossible to ignore.
           The penguins can keep the ice. <span class="font-semibold">We take the ocean.</span>
         </p>
-        <div class="mt-7 flex flex-wrap gap-3">
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-             class="group px-5 py-3 rounded-xl bg-narpe-teal text-narpe-deep font-extrabold drop-shadow-cartoon hover:scale-[1.02] transition inline-flex items-center gap-2">
-            DEXScreener
-            <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80 group-hover:translate-x-0.5 transition"><path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3l-1.42-1.42l9.3-9.29H14V3Z"/></svg>
-          </a>
-          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Twitter / X</a>
-          <a href="https://t.me/NarrTheNarwhalonabs" class="px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Telegram</a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="px-5 py-3 rounded-xl bg-narpe-teal text-narpe-deep font-extrabold hover:opacity-95 transition">DEXScreener</a>
+          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Twitter / X</a>
+          <a href="https://t.me/NarrTheNarwhalonabs" class="px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Telegram</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-white/10">
+  <footer class="mt-10 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-white/60 text-sm">© <span id="year"></span> NARR • Not financial advice</p>
       <div class="flex gap-3">
@@ -290,9 +228,7 @@
     // mobile menu
     const mobBtn = document.getElementById('mobBtn');
     const mobMenu = document.getElementById('mobMenu');
-    if(mobBtn){
-      mobBtn.addEventListener('click', ()=> mobMenu.classList.toggle('hidden'));
-    }
+    if(mobBtn){ mobBtn.addEventListener('click', ()=> mobMenu.classList.toggle('hidden')); }
   </script>
 </body>
 </html>
