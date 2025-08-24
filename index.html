@@ -1,211 +1,248 @@
-<!DOCTYPE html>
-<html lang="en" class="h-full bg-black">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0B1220" />
-  <title>$NARR — Ride the Meme Wave</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$NARR – Ride the Meme Wave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --ink:#0B1220;
-      --glass: rgba(255,255,255,.08);
-      --glass-brd: rgba(255,255,255,.12);
-      --card: rgba(255,255,255,.05);
-      --card-brd: rgba(255,255,255,.10);
-      --teal:#19E3D6;
-      --hi:#F9D34E; /* yellow highlight for key info */
+      --bg:#0b0e12;
+      --panel:#0f1319;
+      --panel-2:#131822;
+      --text:#f2f5f7;
+      --muted:#b8c2cc;
+      --teal:#11c5bf;
+      --teal-2:#12a3a0;
+      --yellow:#ffd447; /* accent façon ancien site */
+      --chip:#ffffff1a;
+      --stroke:#ffffff1f;
+      --glass:rgba(16,20,26,.45);
+      --glass-border:rgba(255,255,255,.14);
+      --btn:#0fe0d8;
+      --btn-text:#072726;
+      --link:#a9b7ff;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:22px;
     }
-    .glass{background:var(--glass);backdrop-filter:blur(6px);border:1px solid var(--glass-brd)}
-    .card{background:var(--card);border:1px solid var(--card-brd)}
-    .shadow-deep{box-shadow:0 10px 40px rgba(0,0,0,.35)}
-    .brand-grad{background:linear-gradient(90deg,#19E3D6 0%,#8EF8D0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    html{scroll-behavior:smooth}
-    /* yellow highlight styles */
-    .hi-chip{background:var(--hi); color:#111827}
-    .hi-text{position:relative}
-    .hi-text::after{content:""; position:absolute; left:-2px; right:-2px; bottom:0; height:.45em; background:linear-gradient(0deg,rgba(249,211,78,.6),rgba(249,211,78,0)); z-index:-1; border-radius:.25rem}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Outfit,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--link);text-decoration:none}
+    .container{max-width:1200px;margin-inline:auto;padding-inline:24px}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.25rem;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--text);transition:.2s}
+    .btn:hover{background:rgba(255,255,255,.12)}
+    .btn-primary{background:var(--btn);border-color:transparent;color:var(--btn-text);font-weight:800}
+    .chips{display:flex;flex-wrap:wrap;gap:.75rem;margin:.9rem 0 1.1rem}
+    .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border-radius:999px;background:var(--chip);border:1px solid var(--stroke);color:var(--text)}
+    .chip .label{color:var(--muted)}
+    .chip.yellow{background:rgba(255,212,71,.14);border-color:rgba(255,212,71,.32)}
+    .copy-wrap{display:flex;align-items:center;gap:.6rem;min-width:0}
+    .copy-box{flex:1;min-width:0;padding:.55rem .8rem;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--stroke);color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .copy-btn{padding:.45rem .7rem;border-radius:10px;background:var(--yellow);color:#130d00;font-weight:800;border:none;cursor:pointer}
+    .logo{display:flex;align-items:center;gap:.6rem;font-weight:900;letter-spacing:.4px}
+    .logo .dollar{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:linear-gradient(180deg,#12c7c1,#0c8c88);color:#062624;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.25)}
+    .logo span.name{color:#fff}
+    header.nav{position:fixed;inset:12px 12px auto 12px;z-index:50}
+    .nav-wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;border-radius:20px;background:linear-gradient(180deg,rgba(20,26,33,.88),rgba(14,18,24,.88));border:1px solid var(--glass-border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+    .menu-btn{padding:.6rem 1.1rem;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.06);color:var(--text);cursor:pointer}
+    .drawer{position:fixed;inset:0;display:none;z-index:60}
+    .drawer.open{display:block}
+    .drawer .scrim{position:absolute;inset:0;background:rgba(0,0,0,.4)}
+    .drawer .card{position:absolute;right:12px;left:12px;top:76px;border-radius:20px;padding:20px;background:rgba(16,20,26,.5);border:1px solid var(--glass-border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .drawer a{display:block;padding:14px 12px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.06);color:var(--text)}
+    .drawer a:hover{background:rgba(255,255,255,.12)}
+    /* hero */
+    .hero{position:relative;min-height:72vh;display:grid;place-items:center;overflow:hidden}
+    @media(min-width:1100px){.hero{min-height:78vh}}
+    .hero video,.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero .fade{position:absolute;inset:auto 0 -1px 0;height:140px;background:linear-gradient(180deg,rgba(11,14,18,0),rgba(11,14,18,1))}
+    .hero .card{position:relative;z-index:1;max-width:980px;margin:110px auto 0;padding:28px 28px;border-radius:28px;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--glass-border);box-shadow:var(--shadow)}
+    .hero h1{font-size:clamp(34px,4.2vw,56px);line-height:1.04;margin:0 0 .4rem;font-weight:900;color:#fff}
+    .hero .sub{font-size:clamp(24px,3.2vw,40px);line-height:1.08;margin:0 0 1rem;font-weight:900;color:var(--teal)}
+    .hero .actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.6rem}
+    /* sections */
+    section{padding:56px 0}
+    h2.kicker{color:var(--teal);letter-spacing:1px;font-size:22px;margin:0 0 16px;font-weight:900}
+    .grid{display:grid;grid-template-columns:1fr;gap:22px}
+    @media(min-width:960px){.grid{grid-template-columns:280px 1fr;align-items:start}}
+    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:18px 18px}
+    .muted{color:var(--muted)}
+    /* og image block */
+    .og{background:var(--panel-2);border:1px solid var(--stroke);border-radius:22px;padding:14px}
+    .og img{width:100%;border-radius:18px;display:block}
+    /* footer */
+    footer{border-top:1px solid var(--stroke);padding:28px 0;color:var(--muted)}
   </style>
 </head>
-<body class="min-h-full text-white selection:bg-teal-300 selection:text-black">
 
+<body>
   <!-- NAV -->
-  <header class="fixed top-0 inset-x-0 z-40">
-    <div class="mx-auto max-w-6xl px-4 py-3">
-      <div class="flex items-center justify-between rounded-2xl bg-[#0B1220]/80 backdrop-blur-sm border border-white/10 px-4 py-2 shadow-deep">
-        <!-- Brand: custom $ badge + gradient NARR -->
-        <div class="flex items-center gap-2">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl"
-                style="background:conic-gradient(from 220deg, #0EE9D8, #77F0D6, #0EE9D8); box-shadow:0 0 0 2px rgba(255,255,255,.15) inset;">
-            <span class="font-black text-[#0B1220] text-lg leading-none">$</span>
-          </span>
-          <span class="font-extrabold text-xl tracking-tight">
-            <span class="brand-grad">NARR</span>
-          </span>
-        </div>
-        <button onclick="toggleMenu()" class="rounded-2xl border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 transition">Menu</button>
+  <header class="nav">
+    <div class="nav-wrap">
+      <div class="logo">
+        <span class="dollar">$</span>
+        <span class="name">NARR</span>
+      </div>
+      <button class="menu-btn" id="openMenu">Menu</button>
+    </div>
+    <div class="drawer" id="drawer">
+      <div class="scrim" id="closeMenu"></div>
+      <div class="card container">
+        <a href="#join">Join the Pod</a>
       </div>
     </div>
   </header>
 
-  <!-- Drawer over hero -->
-  <div id="drawer" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-black/35" onclick="toggleMenu()"></div>
-    <div class="mx-4 mt-24 rounded-3xl glass p-4 text-white shadow-deep">
-      <a href="#join" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl hover:bg-white/10">Join the Pod</a>
-    </div>
-  </div>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <video id="heroVideo" autoplay muted playsinline loop poster="hero-poster.jpeg">
+      <source src="hero-video.mp4" type="video/mp4" />
+      <img class="bg" src="hero-poster.jpeg" alt="Hero background" />
+    </video>
 
-  <!-- HERO (slightly shorter than previous, better blend) -->
-  <section id="hero" class="relative min-h-[88svh] md:min-h-[84vh] overflow-hidden">
-    <div class="absolute inset-0">
-      <video class="absolute inset-0 w-full h-full object-cover" autoplay muted playsinline loop poster="/hero.jpeg">
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 bg-black/28"></div>
-      <!-- top & bottom soft gradients for readability + smoother join -->
-      <div class="absolute inset-x-0 top-0 h-24 md:h-28 bg-gradient-to-b from-black/35 to-transparent"></div>
-      <div class="absolute inset-x-0 bottom-0 h-44 md:h-52 bg-gradient-to-b from-transparent to-black"></div>
-    </div>
+    <div class="card container">
+      <h1>Ride the Meme Wave</h1>
+      <div class="sub">$NARR on Abstract</div>
 
-    <div class="relative max-w-6xl mx-auto px-4 pt-28 pb-10 h-full flex items-end md:items-center">
-      <div class="w-full rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep md:translate-y-4">
-        <h1 class="font-extrabold leading-tight tracking-tight text-4xl sm:text-5xl lg:text-6xl">
-          <span class="hi-text">Ride the Meme Wave</span>
-          <span class="block">
-            <span class="brand-grad">$NARR on Abstract</span>
-          </span>
-        </h1>
-
-        <!-- Badges with yellow key info -->
-        <div class="flex flex-wrap gap-2 mt-5">
-          <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs">
-            <span class="text-white/70">Chain:</span>
-            <span class="hi-chip font-semibold px-2 py-0.5 rounded-lg">Abstract</span>
-          </span>
-
-          <!-- CA row: responsive, no overflow -->
-          <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-2.5 py-1.5 text-sm md:text-xs max-w-full">
-            <span class="text-white/70">CA:</span>
-            <code id="ca" class="tracking-tight truncate max-w-[58vw] sm:max-w-[48vw] md:max-w-[38vw]">
-              0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07
-            </code>
-            <button onclick="copyCA()" class="shrink-0 rounded-lg hi-chip text-xs font-bold px-2.5 py-1">Copy</button>
-          </span>
+      <!-- chips / important facts with yellow accent like old site -->
+      <div class="chips">
+        <div class="chip"><span class="label">Chain:</span> <strong>Abstract</strong></div>
+        <div class="copy-wrap" style="flex:1">
+          <div class="copy-box" id="caText">0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07</div>
+          <button class="copy-btn" id="copyBtn">Copy</button>
         </div>
+      </div>
 
-        <!-- CTAs -->
-        <div class="mt-5 flex flex-wrap gap-3">
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-             class="px-5 py-3 rounded-xl bg-[#19E3D6] text-black font-bold shadow-lg shadow-[#19E3D6]/30 hover:scale-[1.02] transition">DEXScreener</a>
-          <a href="https://x.com/NarrTheNarwhal"
-             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Twitter</a>
-          <a href="https://t.me/NarrTheNarwhalonabs"
-             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Telegram</a>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener">DEXScreener</a>
+        <a class="btn" href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener">Twitter</a>
+        <a class="btn" href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </div>
+
+    <div class="fade"></div>
+  </section>
+
+  <!-- OG VISUAL (smaller, better padding) -->
+  <section class="container" id="og">
+    <div class="og">
+      <img src="og_narpe.jpg" alt="NARR OG visual" loading="lazy">
+    </div>
+  </section>
+
+  <!-- WHAT -->
+  <section class="container" id="what">
+    <div class="grid">
+      <h2 class="kicker">WHAT $NARR IS</h2>
+      <div class="card">
+        <p>A community driven token built for speed, with sharp visuals and a character you can spot from a mile away. No corporate fluff, just culture, momentum and a crew that ships.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTER META -->
+  <section class="container" id="meta">
+    <div class="grid">
+      <h2 class="kicker">THE COUNTER META</h2>
+      <div class="card">
+        <p>Timelines got buried by penguins — cute, safe, predictable. Then a horn cut through the water. <span style="background:rgba(255,212,71,.15);padding:.1rem .3rem;border-radius:.4rem">NARR arrived</span>. If they waddle we spear. If they echo we make noise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGEND -->
+  <section class="container" id="legend">
+    <div class="grid">
+      <h2 class="kicker">THE LEGEND</h2>
+      <div class="card">
+        <p>On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current. Every chart is water and water belongs to the narwhal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="container" id="features">
+    <div class="grid">
+      <h2 class="kicker">PLANNED FEATURES</h2>
+      <div class="card">
+        <p><span style="color:#111;background:var(--yellow);padding:.1rem .35rem;border-radius:.4rem;font-weight:800">Weekly events & giveaways</span>. Community raids with Abstract friends, coordinated stunts and playful rivalry with the penguin crowd. Major future Dapp in the works.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYBOOK -->
+  <section class="container" id="playbook">
+    <div class="grid">
+      <h2 class="kicker">THE PLAYBOOK</h2>
+      <div class="card">
+        <p>Run weekly events. Drop surprise giveaways. Highlight the best community posts. Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section class="container" id="join">
+    <div class="grid">
+      <h2 class="kicker">Join the Pod</h2>
+      <div class="card">
+        <p class="muted">We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore. The penguins can keep the ice. We take the ocean.</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:12px">
+          <a class="btn btn-primary" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener">DEXScreener</a>
+          <a class="btn" href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener">Twitter</a>
+          <a class="btn" href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener">Telegram</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OG image block (better spacing) -->
-  <section class="max-w-5xl mx-auto px-4 pt-8 pb-6">
-    <img src="/og_narpe.jpg" alt="NARR OG artwork"
-         class="w-full rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.4)] object-cover" />
-  </section>
-
-  <!-- CONTENT -->
-  <main>
-    <section id="what" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">WHAT <span class="hi-text">$NARR</span> IS</h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        A community driven token built for speed, with sharp visuals and a character you can spot from a mile away.
-        <span class="hi-text">No corporate fluff</span>, just culture, momentum and a crew that ships.
-      </div>
-    </section>
-
-    <section id="meta" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">THE COUNTER META</h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. <span class="hi-text">$NARR</span> arrived.
-        If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
-      </div>
-    </section>
-
-    <section id="legend" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">THE LEGEND</h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current.
-        Every chart is water and <span class="hi-text">water belongs to the narwhal</span>.
-      </div>
-    </section>
-
-    <section id="features" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">PLANNED FEATURES</h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        <span class="hi-text">Weekly events & giveaways</span>. Community raids with Abstract friends, coordinated stunts and playful rivalry with the penguin crowd.
-        A major future Dapp is in the works with details to be revealed soon.
-      </div>
-    </section>
-
-    <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">THE PLAYBOOK</h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        Run weekly events. Drop surprise giveaways. Highlight the best community posts.
-        Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
-      </div>
-    </section>
-
-    <section id="join" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">Join the Pod</h2>
-      <div class="rounded-2xl glass p-6 text-white shadow-deep">
-        <p class="text-white/90">
-          We will not promise the world, we will flood the timeline. <span class="hi-text">$NARR</span> turns holders into a pod that is loud, loyal and impossible to ignore.
-          The penguins can keep the ice. We take the ocean.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-             class="px-5 py-3 rounded-xl bg-[#19E3D6] text-black font-bold shadow-lg shadow-[#19E3D6]/30 hover:scale-[1.02] transition">DEXScreener</a>
-          <a href="https://x.com/NarrTheNarwhal"
-             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Twitter / X</a>
-          <a href="https://t.me/NarrTheNarwhalonabs"
-             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Telegram</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="mt-10 border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-white/60 text-sm">© <span id="year"></span> NARR • Not financial advice</p>
-      <div class="flex gap-3">
-        <a href="https://x.com/NarrTheNarwhal" class="text-white/80 hover:text-white">Twitter</a>
-        <a href="https://t.me/NarrTheNarwhalonabs" class="text-white/80 hover:text-white">Telegram</a>
-        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="text-white/80 hover:text-white">DEXScreener</a>
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> NARR • Not financial advice</div>
+      <div style="display:flex;gap:12px">
+        <a href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener">Twitter</a>
+        <a href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener">DEXScreener</a>
       </div>
     </div>
   </footer>
 
   <script>
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function toggleMenu(){ document.getElementById('drawer').classList.toggle('hidden'); }
-    function copyCA(){
-      const el = document.getElementById('ca');
-      const txt = el.textContent.trim();
-      navigator.clipboard.writeText(txt).then(()=>{
-        const note = document.createElement('span');
-        note.className = 'ml-2 text-xs text-white/80';
-        note.textContent = 'Copied!';
-        el.parentElement.appendChild(note);
-        setTimeout(()=>note.remove(), 1200);
+    // drawer
+    const drawer = document.getElementById('drawer');
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    openMenu.onclick = ()=> drawer.classList.add('open');
+    document.getElementById('closeMenu').onclick = ()=> drawer.classList.remove('open');
+
+    // copy CA
+    document.getElementById('copyBtn').addEventListener('click',()=>{
+      const text = document.getElementById('caText').textContent.trim();
+      navigator.clipboard.writeText(text).then(()=>{
+        const b = document.getElementById('copyBtn');
+        const old = b.textContent;
+        b.textContent='Copied';
+        setTimeout(()=> b.textContent=old, 1100);
       });
-    }
-    // best-effort autoplay (some mobile browsers pause until interaction)
-    window.addEventListener('load', ()=>{
-      const v = document.querySelector('#hero video');
-      try { const p=v.play(); if(p?.catch) p.catch(()=>{}); } catch(e){}
     });
+
+    // mobile hero fit + prevent overflow of CA row
+    const card = document.querySelector('.hero .card');
+    function fitHero(){
+      const vw = window.innerWidth;
+      if(vw < 420){
+        card.style.marginTop = '96px';
+      } else {
+        card.style.marginTop = '110px';
+      }
+    }
+    window.addEventListener('resize', fitHero);
+    fitHero();
   </script>
 </body>
 </html>
-```0
