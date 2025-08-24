@@ -13,15 +13,14 @@
       theme: {
         extend: {
           colors: {
-            narpe: { teal:'#16c7be', deep:'#0b1833', gold:'#ffd75e', ice:'#e6f7f7', violet:'#6a00ff', night:'#001f4d' }
+            narpe: { teal:'#16c7be', deep:'#0b1833', gold:'#ffd75e', ice:'#e6f7f7', violet:'#6a00ff' }
           },
           fontFamily: {
             display:['Luckiest Guy','system-ui','sans-serif'],
             sans:['Inter','system-ui','sans-serif']
           },
           dropShadow: {
-            cartoon: '0 3px 0 rgba(0,0,0,.45)',
-            glow: '0 10px 30px rgba(106,0,255,.35)'
+            cartoon: '0 3px 0 rgba(0,0,0,.45)'
           }
         }
       }
@@ -35,15 +34,9 @@
   <meta name="theme-color" content="#000000">
 
   <style>
-    /* Glass + badges */
     .glass { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.10); }
     .soft-border { border:1px solid rgba(255,255,255,.12); }
-    .badge { background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); }
     .section-card { border:1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.4); border-radius: 1rem; padding: 1.5rem; }
-
-    /* Marquee */
-    .marquee-track { animation: marquee 20s linear infinite; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* Reveal on scroll */
     .reveal { opacity:0; transform: translateY(12px); transition: all .6s ease; }
@@ -52,7 +45,6 @@
     .reveal-left.show { opacity:1; transform: translateX(0); }
     .reveal-right { opacity:0; transform: translateX(16px); transition: all .7s ease; }
     .reveal-right.show { opacity:1; transform: translateX(0); }
-    @media (prefers-reduced-motion: reduce){ .reveal, .reveal-left, .reveal-right { transition:none; } }
 
     /* CTA ripple */
     .btn-ripple { position: relative; overflow: hidden; }
@@ -63,8 +55,12 @@
       left: var(--rx, 50%); top: var(--ry, 50%); width: var(--rw, 0px); height: var(--rh, 0px); opacity: var(--rop, 0);
     }
 
-    /* Video overlay for readability */
+    /* Video darkening for readability */
     .hero-overlay { background: linear-gradient(180deg, rgba(0,0,0,.70), rgba(0,0,0,.45) 40%, rgba(0,0,0,.75)); }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .reveal-left, .reveal-right { transition:none; }
+    }
   </style>
 </head>
 <body class="bg-black text-white font-sans">
@@ -73,9 +69,9 @@
   <nav class="fixed top-0 inset-x-0 z-50">
     <div class="max-w-6xl mx-auto px-4">
       <div class="mt-3 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl px-4 py-3 flex items-center justify-between">
+        <!-- Clean wordmark only -->
         <a href="#top" class="flex items-center gap-3">
-          <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-narpe-teal font-extrabold">N</span>
-          <span class="font-display tracking-wide">$NARR</span>
+          <span class="font-display tracking-wide text-xl">$NARR</span>
         </a>
         <div class="hidden md:flex items-center gap-6 text-sm">
           <a href="#what" class="hover:text-narpe-teal">About</a>
@@ -83,7 +79,7 @@
           <a href="#playbook" class="hover:text-narpe-teal">Playbook</a>
           <a href="#join" class="hover:text-narpe-teal">Join</a>
           <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-             class="ml-2 px-4 py-2 rounded-xl bg-narpe-teal text-narpe-deep font-semibold hover:opacity-95 transition">
+             class="ml-2 px-4 py-2 rounded-xl bg-narpe-teal text-black font-semibold hover:opacity-95 transition">
              DEXScreener
           </a>
         </div>
@@ -97,34 +93,28 @@
         <a href="#features" class="py-2">Features</a>
         <a href="#playbook" class="py-2">Playbook</a>
         <a href="#join" class="py-2">Join</a>
-        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="mt-1 px-4 py-2 rounded-xl bg-narpe-teal text-narpe-deep font-semibold">DEXScreener</a>
+        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="mt-1 px-4 py-2 rounded-xl bg-narpe-teal text-black font-semibold">DEXScreener</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO with VIDEO + PARTICLES + PARALLAX -->
+  <!-- HERO -->
   <header id="top" class="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-hidden">
-    <!-- Video background (uses hero_poster.jpeg) -->
+    <!-- Background video -->
     <div class="absolute inset-0 -z-10">
-      <video id="heroVideo" class="w-full h-full object-cover" autoplay muted loop playsinline poster="hero_poster.jpeg">
+      <video id="heroVideo" class="w-full h-full object-cover"
+             autoplay muted playsinline loop preload="auto" poster="hero_poster.jpeg">
         <source src="hero_video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
       </video>
       <div class="absolute inset-0 hero-overlay"></div>
-      <!-- Parallax shape -->
-      <div id="parallax" class="absolute -top-24 right-[-10%] w-[65vw] h-[65vw] rounded-full blur-3xl opacity-25"
-           style="background: radial-gradient(closest-side, rgba(22,199,190,.35), transparent 70%);"></div>
-      <!-- Particles canvas -->
+      <!-- Bubbles canvas -->
       <canvas id="fx" class="absolute inset-0"></canvas>
     </div>
 
     <div class="relative max-w-6xl mx-auto px-4 grid lg:grid-cols-12 gap-10 items-center">
-      <!-- Copy -->
       <div class="lg:col-span-7 reveal-left">
-        <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-narpe-teal badge rounded-full px-3 py-1">
-          Abstract • Community-first
-        </div>
-        <h1 class="mt-4 font-display text-5xl sm:text-6xl leading-tight">
+        <!-- Removed the confusing teal badge -->
+        <h1 class="font-display text-5xl sm:text-6xl leading-tight">
           Ride the Meme Wave
           <span class="block text-narpe-teal drop-shadow-cartoon">$NARR on Abstract</span>
         </h1>
@@ -132,43 +122,35 @@
           A community driven memecoin on the Abstract chain. The narwhal taking on the penguin meta with fast visuals, faster memes and real momentum.
         </p>
 
-        <!-- Chain + CA -->
         <div class="mt-6 flex flex-wrap items-center gap-3">
-          <span class="text-sm text-white/85 badge rounded-full px-3 py-1">
+          <span class="text-sm text-white/85 bg-white/10 border border-white/15 rounded-full px-3 py-1">
             Chain: <span class="font-semibold ml-1">Abstract</span>
           </span>
-          <span class="text-sm text-white/85 badge rounded-full px-3 py-1 flex items-center gap-2">
+          <span class="text-sm text-white/85 bg-white/10 border border-white/15 rounded-full px-3 py-1 flex items-center gap-2">
             CA: <code id="ca" class="bg-black/40 px-1.5 py-0.5 rounded border border-white/10">TBA</code>
-            <button onclick="copyCA()" class="text-xs px-2 py-1 rounded bg-narpe-gold text-black font-bold hover:opacity-90 transition">Copy</button>
+            <button onclick="copyCA()" class="text-xs px-2 py-1 rounded bg-[#ffd75e] text-black font-bold hover:opacity-90 transition">Copy</button>
           </span>
         </div>
 
-        <!-- CTAs -->
         <div class="mt-7 flex flex-wrap gap-3">
           <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-             class="btn-ripple px-5 py-3 rounded-xl bg-narpe-teal text-narpe-deep font-extrabold hover:opacity-95 transition">
+             class="btn-ripple px-5 py-3 rounded-xl bg-narpe-teal text-black font-extrabold hover:opacity-95 transition">
             DEXScreener
           </a>
           <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09"
-             class="btn-ripple px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">
-            Twitter / X
-          </a>
+             class="btn-ripple px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Twitter / X</a>
           <a href="https://t.me/NarrTheNarwhalonabs"
-             class="btn-ripple px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">
-            Telegram
-          </a>
+             class="btn-ripple px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Telegram</a>
         </div>
       </div>
 
-      <!-- Decorative hero block -->
-      <div class="lg:col-span-5 reveal-right">
-        <div class="relative h-72 sm:h-80 lg:h-full rounded-3xl glass border border-white/10 overflow-hidden">
-          <!-- Subtle grid -->
+      <!-- Decorative card: now hidden on mobile to remove empty space -->
+      <div class="lg:col-span-5 hidden lg:block reveal-right">
+        <div class="relative h-full rounded-3xl glass border border-white/10 overflow-hidden">
           <svg class="absolute inset-0 w-full h-full opacity-[.06]" xmlns="http://www.w3.org/2000/svg">
             <defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" fill="none" stroke="white"/></pattern></defs>
             <rect width="100%" height="100%" fill="url(#g)"/>
           </svg>
-          <!-- Soft accent -->
           <div class="absolute inset-0"
                style="background:
                  radial-gradient(45% 40% at 70% 30%, rgba(22,199,190,.18), transparent 60%),
@@ -179,27 +161,8 @@
     </div>
   </header>
 
-  <!-- MARQUEE -->
-  <section class="py-6 soft-border border-x-0 border-b-0">
-    <div class="overflow-hidden">
-      <div class="marquee-track whitespace-nowrap">
-        <span class="mx-8 text-white/70">Abstract •</span>
-        <span class="mx-8 text-white/70">$NARR •</span>
-        <span class="mx-8 text-white/70">Weekly Events •</span>
-        <span class="mx-8 text-white/70">Giveaways •</span>
-        <span class="mx-8 text-white/70">Collabs •</span>
-        <span class="mx-8 text-white/70">Community •</span>
-        <span class="mx-8 text-white/70">Abstract •</span>
-        <span class="mx-8 text-white/70">$NARR •</span>
-        <span class="mx-8 text-white/70">Weekly Events •</span>
-        <span class="mx-8 text-white/70">Giveaways •</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTENT -->
+  <!-- CONTENT (unchanged) -->
   <main>
-    <!-- What $NARR Is -->
     <section id="what" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
       <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">What $NARR Is</h2>
       <div class="section-card reveal">
@@ -209,7 +172,6 @@
       </div>
     </section>
 
-    <!-- The Counter Meta -->
     <section id="countermeta" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
       <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Counter Meta</h2>
       <div class="section-card reveal">
@@ -219,7 +181,6 @@
       </div>
     </section>
 
-    <!-- The Legend -->
     <section id="legend" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
       <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Legend</h2>
       <div class="section-card reveal">
@@ -229,26 +190,24 @@
       </div>
     </section>
 
-    <!-- Planned Features -->
     <section id="features" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
       <h2 class="font-display text-3xl sm:text-4xl mb-6 text-narpe-teal">Planned Features</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="section-card reveal">
-          <div class="text-narpe-gold font-extrabold mb-2">Weekly Events &amp; Giveaways</div>
+          <div class="text-[#ffd75e] font-extrabold mb-2">Weekly Events &amp; Giveaways</div>
           <p class="text-white/85 text-sm">Raids, contests, surprises. Every week is a new wave.</p>
         </div>
         <div class="section-card reveal">
-          <div class="text-narpe-gold font-extrabold mb-2">Collabs &amp; Community Raids</div>
-          <p class="text-white/85 text-sm">Cross-project stunts with Abstract friends, coordinated meme raids and playful rivalry with the penguin crowd.</p>
+          <div class="text-[#ffd75e] font-extrabold mb-2">Collabs &amp; Community Raids</div>
+          <p class="text-white/85 text-sm">Cross-project stunts with Abstract friends, coordinated meme raids and playful rivalry.</p>
         </div>
         <div class="section-card reveal">
-          <div class="text-narpe-gold font-extrabold mb-2">Future Dapp</div>
-          <p class="text-white/85 text-sm">Major Dapp in the works, with details to be revealed soon.</p>
+          <div class="text-[#ffd75e] font-extrabold mb-2">Future Dapp</div>
+          <p class="text-white/85 text-sm">Major Dapp in the works, details to be revealed.</p>
         </div>
       </div>
     </section>
 
-    <!-- The Playbook -->
     <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
       <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Playbook</h2>
       <div class="section-card reveal">
@@ -258,23 +217,16 @@
       </div>
     </section>
 
-    <!-- CTA / Join -->
     <section id="join" class="max-w-6xl mx-auto px-4 pb-16">
       <div class="rounded-3xl p-1" style="background: linear-gradient(135deg, rgba(22,199,190,.35), rgba(255,255,255,.05), rgba(106,0,255,.35));">
         <div class="rounded-[22px] bg-white/5 backdrop-blur-xl border border-white/15 p-8 lg:p-10 reveal">
-          <h2 class="font-display text-3xl sm:text-4xl leading-tight text-white mb-4">
-            Join the Pod
-          </h2>
+          <h2 class="font-display text-3xl sm:text-4xl leading-tight mb-4">Join the Pod</h2>
           <p class="text-white/90 text-lg leading-relaxed max-w-3xl">
-            We will not promise the world — we will flood the timeline. <span class="font-semibold">$NARR</span> turns holders into a pod that is loud, loyal and impossible to ignore.
-            The penguins can keep the ice. <span class="font-semibold">We take the ocean.</span>
+            We will not promise the world — we will flood the timeline. <span class="font-semibold">$NARR</span> turns holders into a pod that is loud, loyal and impossible to ignore. The penguins can keep the ice. <span class="font-semibold">We take the ocean.</span>
           </p>
           <div class="mt-7 flex flex-wrap gap-3">
             <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-               class="btn-ripple group px-5 py-3 rounded-xl bg-narpe-teal text-narpe-deep font-extrabold drop-shadow-cartoon hover:scale-[1.02] transition inline-flex items-center gap-2">
-              DEXScreener
-              <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80 group-hover:translate-x-0.5 transition"><path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3l-1.42-1.42l9.3-9.29H14V3Z"/></svg>
-            </a>
+               class="btn-ripple px-5 py-3 rounded-xl bg-narpe-teal text-black font-extrabold drop-shadow-cartoon hover:scale-[1.02] transition">DEXScreener</a>
             <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn-ripple px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Twitter / X</a>
             <a href="https://t.me/NarrTheNarwhalonabs" class="btn-ripple px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Telegram</a>
           </div>
@@ -332,38 +284,50 @@
       });
     });
 
-    // Parallax (very light)
-    const p = document.getElementById('parallax');
-    window.addEventListener('scroll', ()=>{
-      const y = window.scrollY * 0.18;
-      p.style.transform = 'translateY(' + y + 'px)';
-    }, {passive:true});
+    // HERO video: force play on load and first interaction (iOS fix)
+    const vid = document.getElementById('heroVideo');
+    function tryPlay(){ if (vid) { const p = vid.play(); if (p && p.catch) p.catch(()=>{}); } }
+    if (vid) {
+      vid.addEventListener('loadedmetadata', tryPlay, { once:true });
+      window.addEventListener('touchstart', tryPlay, { once:true, passive:true });
+      window.addEventListener('click', tryPlay, { once:true });
+    }
 
-    // Particles (subtle)
+    // Bubbles effect (subtle)
     const canvas = document.getElementById('fx');
     const ctx = canvas.getContext('2d');
-    let w, h, particles = [];
+    let w, h, bubbles = [];
     function resize(){
       w = canvas.width = canvas.offsetWidth;
       h = canvas.height = canvas.offsetHeight;
-      particles = Array.from({length: 36}, ()=>({
+      const count = Math.max(30, Math.floor(w * h / 40000)); // scale with screen
+      bubbles = Array.from({length: count}, ()=>newBubble());
+    }
+    function newBubble(){
+      const r = Math.random()*2.2 + 0.8;
+      return {
         x: Math.random()*w,
-        y: Math.random()*h,
-        r: Math.random()*1.8 + 0.6,
-        vx: (Math.random()-.5)*0.15,
-        vy: (Math.random()-.5)*0.15,
-        a: Math.random()*0.15 + 0.05
-      }));
+        y: h + Math.random()*h*0.3,
+        r,
+        s: Math.random()*0.6 + 0.3,            // speed
+        o: Math.random()*0.25 + 0.05,          // opacity
+        wob: Math.random()*0.8 + 0.3,          // wobble amplitude
+        ang: Math.random()*Math.PI*2
+      };
     }
     function tick(){
       ctx.clearRect(0,0,w,h);
-      ctx.fillStyle = 'rgba(255,255,255,0.12)';
-      particles.forEach(p=>{
-        p.x += p.vx; p.y += p.vy;
-        if(p.x<0||p.x>w) p.vx*=-1;
-        if(p.y<0||p.y>h) p.vy*=-1;
-        ctx.globalAlpha = p.a;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+      bubbles.forEach(b=>{
+        b.y -= b.s;
+        b.ang += 0.02;
+        b.x += Math.sin(b.ang) * b.wob * 0.2;
+        if (b.y < -10) { Object.assign(b, newBubble()); b.y = h + 10; }
+        ctx.globalAlpha = b.o;
+        ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        const grd = ctx.createRadialGradient(b.x-0.5*b.r, b.y-0.7*b.r, 0, b.x, b.y, b.r);
+        grd.addColorStop(0, 'rgba(255,255,255,0.35)');
+        grd.addColorStop(1, 'rgba(255,255,255,0.08)');
+        ctx.fillStyle = grd; ctx.fill();
       });
       requestAnimationFrame(tick);
     }
