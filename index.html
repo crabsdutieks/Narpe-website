@@ -37,7 +37,8 @@
   <div id="drawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/30" onclick="toggleMenu()"></div>
     <div class="mx-4 mt-24 rounded-3xl bg-black text-white border border-white/10 p-4 shadow-deep">
-      <a href="#join" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl hover:bg-white/10 uppercase">JOIN THE POD</a>
+      <!-- Remplacé par Links + scroll garanti -->
+      <a href="#join" onclick="gotoJoin(event)" class="block px-4 py-3 rounded-xl hover:bg-white/10">Links</a>
     </div>
   </div>
 
@@ -194,6 +195,17 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     function toggleMenu(){ document.getElementById('drawer').classList.toggle('hidden'); }
+
+    // Scroll garanti vers #join depuis le menu
+    function gotoJoin(e){
+      if(e) e.preventDefault();
+      toggleMenu(); // ferme d'abord
+      setTimeout(()=>{ 
+        const el = document.querySelector('#join');
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 150);
+    }
+
     function copyCA(){
       const el = document.getElementById('ca');
       const txt = el.textContent.trim();
@@ -212,3 +224,4 @@
   </script>
 </body>
 </html>
+```0
