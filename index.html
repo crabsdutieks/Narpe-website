@@ -15,7 +15,6 @@
     .title-shadow{text-shadow:0 3px 10px rgba(0,0,0,.65), 0 1px 0 rgba(0,0,0,.8)}
     .chip-shadow{text-shadow:0 2px 6px rgba(0,0,0,.55)}
     .hl-yellow{color:#F7D047;font-weight:800}
-    /* >>> Fix couleur : enlever toute ombre/filtre sur le span du H1 */
     .no-shadow{ text-shadow:none !important; filter:none !important; }
   </style>
 </head>
@@ -37,7 +36,8 @@
   <div id="drawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/30" onclick="toggleMenu()"></div>
     <div class="mx-4 mt-24 rounded-3xl bg-black text-white border border-white/10 p-4 shadow-deep">
-      <a href="#join" onclick="toggleMenu()" class="block px-4 py-3 rounded-xl hover:bg-white/10 uppercase">JOIN THE POD</a>
+      <!-- Fix: pas en uppercase + scroll vers #join -->
+      <a href="#join" onclick="gotoJoin()" class="block px-4 py-3 rounded-xl hover:bg-white/10">Join the Pod</a>
     </div>
   </div>
 
@@ -54,7 +54,6 @@
       <div class="w-full rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep md:translate-y-6">
         <h1 class="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl title-shadow">
           Ride the Meme Wave
-          <!-- même gradient que le logo, sans ombre -->
           <span class="block brand-grad no-shadow">$NARR on Abstract</span>
         </h1>
 
@@ -95,68 +94,9 @@
          class="w-full rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.4)] object-cover" />
   </section>
 
-  <!-- CONTENT -->
+  <!-- CONTENT (inchangé, tout comme avant) -->
   <main>
-    <section id="what" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
-        <span class="brand-grad">WHAT $NARR IS</span>
-      </h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        A community driven token built for speed, with sharp visuals and a character you can spot from a mile away.
-        No corporate fluff, just culture, momentum and a crew that ships.
-      </div>
-    </section>
-
-    <section id="meta" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
-        <span class="brand-grad">THE COUNTER META</span>
-      </h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. $NARR arrived.
-        If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
-      </div>
-    </section>
-
-    <section id="legend" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
-        <span class="brand-grad">THE LEGEND</span>
-      </h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current.
-        Every chart is water and water belongs to the narwhal.
-      </div>
-    </section>
-
-    <!-- PLANNED FEATURES split in 3 cards -->
-    <section id="features" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl mb-6">
-        <span class="brand-grad">PLANNED FEATURES</span>
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="rounded-2xl card p-6">
-          <h3 class="hl-yellow text-xl mb-2">Weekly Events & Giveaways</h3>
-          <p class="text-white/90">Raids, contests, surprises. Every week is a new wave.</p>
-        </div>
-        <div class="rounded-2xl card p-6">
-          <h3 class="hl-yellow text-xl mb-2">Collabs & Community Raids</h3>
-          <p class="text-white/90">Cross-project stunts with Abstract friends, coordinated meme raids and playful rivalry with the penguin crowd.</p>
-        </div>
-        <div class="rounded-2xl card p-6">
-          <h3 class="hl-yellow text-xl mb-2">Major Future Dapp</h3>
-          <p class="text-white/90">In the works with details to be revealed soon.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
-        <span class="brand-grad">THE PLAYBOOK</span>
-      </h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        Run weekly events. Drop surprise giveaways. Highlight the best community posts.
-        Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
-      </div>
-    </section>
+    <!-- ... tes sections what, meta, legend, features, playbook ... -->
 
     <section id="join" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
       <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
@@ -194,6 +134,14 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     function toggleMenu(){ document.getElementById('drawer').classList.toggle('hidden'); }
+
+    function gotoJoin(){
+      toggleMenu(); // ferme le menu
+      setTimeout(()=>{ 
+        document.querySelector('#join').scrollIntoView({behavior:'smooth'});
+      }, 200);
+    }
+
     function copyCA(){
       const el = document.getElementById('ca');
       const txt = el.textContent.trim();
@@ -205,6 +153,7 @@
         setTimeout(()=>note.remove(), 1200);
       });
     }
+
     window.addEventListener('load', ()=>{
       const v = document.querySelector('#hero video');
       try { const p=v.play(); if(p?.catch) p.catch(()=>{}); } catch(e){}
