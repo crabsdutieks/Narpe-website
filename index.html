@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>$NARR — Ride the Meme Wave</title>
-  <meta name="description" content="$NARR on Abstract. Weekly events, giveaways, culture-first visuals, and a pod that ships." />
+  <meta name="description" content="$NARR on Abstract. Weekly events, giveaways, and culture-first visuals." />
   <meta property="og:title" content="$NARR — Ride the Meme Wave" />
-  <meta property="og:description" content="Weekly events, giveaways, and a pod that ships. The penguins can keep the ice. We take the ocean." />
+  <meta property="og:description" content="The penguins can keep the ice. We take the ocean." />
   <meta property="og:image" content="og_narpe.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://www.narrthenarwhal.com/" />
@@ -17,246 +16,246 @@
 
   <style>
     :root{
-      --teal:#16c7be;
-      --ink:#0b1220;
-      --glass:rgba(255,255,255,.08);
-      --glass-border:rgba(255,255,255,.14);
+      --ink:#0a0f15;
+      --ink-2:#0d121c;
+      --text:#e9f1ff;
+      --muted:rgba(233,241,255,.76);
+      --accent-1:#1ee6d0; /* teal */
+      --accent-2:#5fa3ff; /* blue */
+      --glass:rgba(255,255,255,.07);
+      --glass-b:#ffffff14;
     }
-    body{
-      color:#fff;
-      background:#000;
-    }
+    html,body{ background:#000; color:var(--text); }
 
-    /* ===== NAV / MENU ===== */
-    .bar{
-      background:linear-gradient(180deg, rgba(11,18,32,.86), rgba(11,18,32,.78));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    /* ====== typography ====== */
+    .headline{
+      letter-spacing:-.02em;
+      line-height:1.08;
+      text-shadow:0 2px 20px rgba(0,0,0,.45);
+    }
+    .eyebrow{
+      font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+      color:rgba(233,241,255,.72);
+    }
+    .title{
+      font-weight:900; letter-spacing:-.02em;
+      background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:none;
+    }
+    .lead{ color:var(--muted); }
+
+    /* ====== glass & cards ====== */
+    .glass{
+      background:linear-gradient(180deg,var(--glass),rgba(255,255,255,.04));
+      border:1px solid var(--glass-b); backdrop-filter:blur(6px);
+      border-radius:18px;
+    }
+    .btn{ border:1px solid var(--glass-b); background:rgba(255,255,255,.06); }
+    .btn-primary{ background:var(--accent-1); color:#051419; font-weight:800; }
+    .btn:hover{ background:rgba(255,255,255,.09); }
+    .btn-primary:hover{ filter:saturate(1.1) brightness(1.05); }
+
+    /* ====== nav ====== */
+    .nav-wrap{
+      background:linear-gradient(180deg, rgba(8,12,20,.86), rgba(8,12,20,.78));
+      border:1px solid var(--glass-b); box-shadow:0 10px 30px rgba(0,0,0,.35);
     }
     .menu-panel{
       background:linear-gradient(180deg, rgba(6,10,18,.96), rgba(10,14,24,.92));
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:0 30px 80px rgba(0,0,0,.55);
+      border:1px solid var(--glass-b); box-shadow:0 30px 80px rgba(0,0,0,.55);
+      border-radius:18px;
     }
 
-    /* ===== HERO ===== */
-    .hero{
-      position:relative;
-      overflow:hidden;
-      min-height:72vh;
-      isolation:isolate;
-    }
-    .hero video{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-      filter:saturate(1.05) contrast(1.02);
-      z-index:0;
-    }
-    /* Stronger overlay for readability */
+    /* ====== hero ====== */
+    .hero{ position:relative; min-height:78vh; overflow:hidden; isolation:isolate; }
+    .hero video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+    /* top vignette + strong bottom blend into dark site to avoid hard cut */
     .hero::after{
       content:""; position:absolute; inset:0; z-index:0;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.50) 100%),
-        radial-gradient(120% 80% at 50% 0%, rgba(0,0,0,.42), transparent 55%);
-      pointer-events:none;
+        radial-gradient(120% 70% at 50% -10%, rgba(0,0,0,.42), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 42%, rgba(0,0,0,.82) 88%, #000 100%);
     }
-    /* Glass block behind headline/buttons for guaranteed contrast */
-    .hero-glass{
-      background:linear-gradient(180deg, rgba(11,18,32,.78), rgba(11,18,32,.72));
-      border:1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(8px);
-      border-radius:22px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
-    }
-    .hero h1{
-      text-shadow:0 2px 12px rgba(0,0,0,.6);
+    /* subtle water bubbles layer */
+    #bubbles{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+    .heroGlass{ z-index:2; }
+
+    /* ====== section separators (soft) ====== */
+    .soft-sep{
+      height:56px;
+      background: radial-gradient(60% 120% at 50% 0%, rgba(255,255,255,.05), transparent 70%);
     }
 
-    /* ===== BUBBLES CANVAS ===== */
-    #bubbles{
-      position:absolute; inset:0; z-index:1; pointer-events:none;
-    }
+    /* ====== OG image frame ====== */
+    .og{ border:1px solid var(--glass-b); border-radius:18px; overflow:hidden; }
+    .og::after{ content:""; position:absolute; inset:0; background:
+      radial-gradient(120% 100% at 50% -20%, rgba(0,0,0,.20), transparent 40%),
+      radial-gradient(120% 100% at 50% 120%, rgba(0,0,0,.22), transparent 45%); pointer-events:none; }
 
-    /* ===== GLASS CARDS ===== */
-    .card{
-      border:1px solid var(--glass-border);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius:18px;
-      backdrop-filter: blur(6px);
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn-primary{
-      background:var(--teal); color:#0a0f1a; font-weight:800;
-      box-shadow:0 8px 30px rgba(22,199,190,.35);
-    }
-    .btn{
-      border:1px solid var(--glass-border);
-      background:rgba(255,255,255,.06);
-    }
-
-    /* ===== OG IMAGE BLOCK (smaller + breathing room) ===== */
-    .og-card{
-      position:relative; overflow:hidden; border-radius:18px;
-      border:1px solid var(--glass-border);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-    }
-    .og-card::after{
-      content:""; position:absolute; inset:0; pointer-events:none;
-      background:
-        radial-gradient(120% 80% at 50% -10%, rgba(0,0,0,.22), transparent 40%),
-        radial-gradient(120% 80% at 50% 110%, rgba(0,0,0,.26), transparent 40%);
-    }
-
-    /* Sticky CTA (mobile) */
+    /* sticky CTA */
     #stickyCTA{ display:none; }
-    @media (max-width:768px){
+    @media (max-width: 900px){
       #stickyCTA.show{ display:block; }
     }
   </style>
 </head>
-<body class="antialiased selection:bg-teal-300/20 selection:text-white">
+<body class="antialiased selection:bg-cyan-300/20 selection:text-white">
 
-  <!-- ===== HEADER / HERO ===== -->
-  <header id="top" class="hero">
+  <!-- ===== NAV ===== -->
+  <div class="relative z-20 max-w-7xl mx-auto px-6 pt-6">
+    <div class="nav-wrap rounded-3xl px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="font-black text-2xl">$NARR</span>
+      </div>
+      <button id="openMenu" class="px-4 py-2 rounded-2xl border border-white/15 hover:bg-white/5 transition">Menu</button>
+    </div>
+    <div id="menuPanel" class="menu-panel mt-3 p-4 hidden">
+      <a href="#join" class="block px-4 py-3 rounded-xl hover:bg-white/5">Join the Pod</a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero mt-4">
     <video id="heroVideo" autoplay muted playsinline loop preload="auto" poster="hero_poster.jpeg">
-      <source src="hero_video.mp4" type="video/mp4" playsinline>
+      <source src="hero_video.mp4" type="video/mp4">
     </video>
     <canvas id="bubbles"></canvas>
 
-    <!-- Top nav -->
-    <div class="relative z-10 max-w-6xl mx-auto px-4 pt-6">
-      <div class="bar rounded-3xl px-5 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <span class="font-extrabold text-2xl tracking-tight">$NARR</span>
-        </div>
-        <button id="openMenu" class="px-4 py-2 rounded-2xl border border-white/15 hover:bg-white/5 transition" aria-label="Open menu">Menu</button>
-      </div>
-
-      <div id="menuPanel" class="menu-panel rounded-3xl mt-3 p-4 hidden">
-        <a href="#join" class="block px-4 py-3 rounded-2xl hover:bg-white/5">Join the Pod</a>
-      </div>
-    </div>
-
-    <!-- Hero content with glass panel -->
-    <div class="relative z-10 max-w-6xl mx-auto px-4 pb-10 pt-10 md:pt-16">
-      <div class="hero-glass p-5 md:p-7 max-w-3xl">
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-          Ride the meme wave.<br class="hidden md:block" />
+    <div class="heroGlass relative heroGlass max-w-7xl mx-auto px-6 pt-16 pb-10">
+      <div class="glass max-w-4xl p-7 md:p-9">
+        <div class="eyebrow mb-3">Abstract • Community-First</div>
+        <h1 class="headline text-[38px] md:text-[64px] font-black">
+          Ride the meme wave.<br class="hidden md:block">
           The narwhal taking on the penguin meta.
         </h1>
 
-        <div class="mt-5 flex flex-wrap items-center gap-3">
-          <span class="card text-white/90 px-4 py-2 rounded-2xl">Chain: <b class="text-white">Abstract</b></span>
-          <span class="card text-white/90 px-4 py-2 rounded-2xl flex items-center gap-2">
-            CA: <span id="ca" class="font-mono">0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07</span>
-            <button class="ml-1 px-2 py-1 rounded-lg bg-yellow-400/90 text-black text-sm font-bold" onclick="copyCA()" aria-label="Copy contract address">Copy</button>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-3 max-w-xl">
+          <span class="glass px-4 py-2 rounded-2xl text-[15px]">Chain: <b class="text-white">Abstract</b></span>
+          <span class="glass px-4 py-2 rounded-2xl text-[15px] flex items-center gap-2 md:col-span-2">
+            CA: <span id="ca" class="font-mono text-white/90 break-all">0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07</span>
+            <button class="ml-1 px-2 py-1 rounded-lg bg-yellow-400/90 text-black text-xs font-extrabold" onclick="copyCA()">Copy</button>
           </span>
         </div>
 
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="btn-primary px-5 py-3 rounded-xl">DEXScreener</a>
-          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn px-5 py-3 rounded-xl">Twitter</a>
-          <a href="https://t.me/NarrTheNarwhalonabs" class="btn px-5 py-3 rounded-xl">Telegram</a>
+          <a class="btn-primary px-5 py-3 rounded-xl" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c">DEXScreener</a>
+          <a class="btn px-5 py-3 rounded-xl" href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09">Twitter</a>
+          <a class="btn px-5 py-3 rounded-xl" href="https://t.me/NarrTheNarwhalonabs">Telegram</a>
         </div>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- OG IMAGE (tight and intentional) -->
-    <section class="max-w-6xl mx-auto px-4 pt-10 pb-4">
-      <div class="og-card mx-auto max-w-2xl">
+  <!-- soft blend helper (removes hard cut) -->
+  <div class="soft-sep"></div>
+
+  <main class="relative z-10">
+    <!-- OG image (smaller, balanced) -->
+    <section class="max-w-7xl mx-auto px-6">
+      <div class="relative og mx-auto max-w-3xl">
         <img src="og_narpe.jpg" alt="NARR key visual" class="w-full h-auto block" loading="lazy" decoding="async">
       </div>
     </section>
 
     <!-- WHAT -->
-    <section id="what" class="max-w-6xl mx-auto px-4 py-10">
-      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">WHAT $NARR IS</h2>
-      <div class="card p-6">
-        <p class="text-white/90">
-          A community driven token built for speed, with sharp visuals, relentless memes and a character you can spot from a mile away.
-          No corporate fluff, just culture, momentum and a crew that ships.
-        </p>
+    <section id="what" class="max-w-7xl mx-auto px-6 py-14 md:py-18">
+      <div class="grid md:grid-cols-[340px_1fr] gap-8 items-start">
+        <h2 class="title text-4xl md:text-5xl">WHAT $NARR IS</h2>
+        <div class="glass p-7">
+          <p class="lead text-lg">
+            A community driven token built for speed, with sharp visuals and a character you can spot from a mile away.
+            No corporate fluff, just culture, momentum and a crew that ships.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- COUNTER META -->
-    <section class="max-w-6xl mx-auto px-4 py-10">
-      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">THE COUNTER META</h2>
-      <div class="card p-6">
-        <p class="text-white/90">
-          Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. $NARR arrived. If they waddle we spear.
-          If they echo we make noise. The feed needed a new main character and we showed up with a wave.
-        </p>
+    <section class="max-w-7xl mx-auto px-6 py-10 md:py-16">
+      <div class="grid md:grid-cols-[340px_1fr] gap-8 items-start">
+        <h2 class="title text-4xl md:text-5xl">THE COUNTER META</h2>
+        <div class="glass p-7">
+          <p class="lead text-lg">
+            Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. $NARR arrived.
+            If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- LEGEND -->
-    <section class="max-w-6xl mx-auto px-4 py-10">
-      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">THE LEGEND</h2>
-      <div class="card p-6">
-        <p class="text-white/90">
-          On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current.
-          Every chart is water and water belongs to the narwhal.
-        </p>
+    <section class="max-w-7xl mx-auto px-6 py-10 md:py-16">
+      <div class="grid md:grid-cols-[340px_1fr] gap-8 items-start">
+        <h2 class="title text-4xl md:text-5xl">THE LEGEND</h2>
+        <div class="glass p-7">
+          <p class="lead text-lg">
+            On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current.
+            Every chart is water and water belongs to the narwhal.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- FEATURES -->
-    <section class="max-w-6xl mx-auto px-4 py-10">
-      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">PLANNED FEATURES</h2>
-      <div class="card p-6">
-        <p class="text-white/90">
-          Weekly events and giveaways. Community raids with Abstract friends, coordinated stunts and playful rivalry with the penguin crowd.
-          A major future Dapp is in the works with details to be revealed soon.
-        </p>
+    <section class="max-w-7xl mx-auto px-6 py-10 md:py-16">
+      <div class="grid md:grid-cols-[340px_1fr] gap-8 items-start">
+        <h2 class="title text-4xl md:text-5xl">PLANNED FEATURES</h2>
+        <div class="glass p-7">
+          <p class="lead text-lg">
+            Weekly events and giveaways. Community raids with Abstract friends, coordinated stunts and playful rivalry with the penguin crowd.
+            A major future Dapp is in the works with details to be revealed soon.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- PLAYBOOK -->
-    <section class="max-w-6xl mx-auto px-4 py-10">
-      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">THE PLAYBOOK</h2>
-      <div class="card p-6">
-        <p class="text-white/90">
-          Run weekly events. Drop surprise giveaways. Highlight the best community posts. Share art people actually use as PFPs.
-          Every moment becomes movement, every wave builds momentum.
-        </p>
+    <section class="max-w-7xl mx-auto px-6 py-10 md:py-16">
+      <div class="grid md:grid-cols-[340px_1fr] gap-8 items-start">
+        <h2 class="title text-4xl md:text-5xl">THE PLAYBOOK</h2>
+        <div class="glass p-7">
+          <p class="lead text-lg">
+            Run weekly events. Drop surprise giveaways. Highlight the best community posts.
+            Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- JOIN -->
-    <section id="join" class="max-w-6xl mx-auto px-4 py-12">
-      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">Join the Pod</h2>
-      <div class="card p-6">
-        <p class="text-white/90">
-          We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore.
-          The penguins can keep the ice. We take the ocean.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="btn-primary px-5 py-3 rounded-xl">DEXScreener</a>
-          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn px-5 py-3 rounded-xl">Twitter</a>
-          <a href="https://t.me/NarrTheNarwhalonabs" class="btn px-5 py-3 rounded-xl">Telegram</a>
+    <section id="join" class="max-w-7xl mx-auto px-6 py-14 md:py-18">
+      <div class="grid md:grid-cols-[340px_1fr] gap-8 items-start">
+        <h2 class="title text-4xl md:text-5xl">Join the Pod</h2>
+        <div class="glass p-7">
+          <p class="lead text-lg">
+            We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore.
+            The penguins can keep the ice. We take the ocean.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a class="btn-primary px-5 py-3 rounded-xl" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c">DEXScreener</a>
+            <a class="btn px-5 py-3 rounded-xl" href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09">Twitter</a>
+            <a class="btn px-5 py-3 rounded-xl" href="https://t.me/NarrTheNarwhalonabs">Telegram</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="mt-10 border-t border-white/10">
-    <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+  <footer class="mt-8 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-white/60 text-sm">© <span id="year"></span> NARR • Not financial advice</p>
-      <div class="flex gap-3">
-        <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="text-white/80 hover:text-white">Twitter</a>
-        <a href="https://t.me/NarrTheNarwhalonabs" class="text-white/80 hover:text-white">Telegram</a>
-        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="text-white/80 hover:text-white">DEXScreener</a>
+      <div class="flex gap-4 text-sm">
+        <a class="text-white/80 hover:text-white" href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09">Twitter</a>
+        <a class="text-white/80 hover:text-white" href="https://t.me/NarrTheNarwhalonabs">Telegram</a>
+        <a class="text-white/80 hover:text-white" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c">DEXScreener</a>
       </div>
     </div>
   </footer>
 
-  <!-- Sticky CTA -->
+  <!-- sticky CTA (mobile) -->
   <div id="stickyCTA" class="fixed bottom-4 inset-x-4 z-50">
-    <a href="#join" class="hidden w-full text-center px-4 py-3 rounded-xl btn-primary" id="stickyLink">Join the Pod</a>
+    <a href="#join" id="stickyLink" class="hidden w-full text-center px-4 py-3 rounded-xl btn-primary">Join the Pod</a>
   </div>
 
   <script>
@@ -268,11 +267,10 @@
       const el = document.getElementById('ca');
       const txt = el.textContent.trim();
       navigator.clipboard.writeText(txt).then(()=>{
-        const note = document.createElement('span');
-        note.className = 'ml-2 text-xs text-white/70';
-        note.textContent = 'Copied!';
-        el.after(note);
-        setTimeout(()=>note.remove(), 1200);
+        const n = document.createElement('span');
+        n.className='ml-2 text-xs text-white/70';
+        n.textContent='Copied!';
+        el.after(n); setTimeout(()=>n.remove(),1200);
       });
     }
     window.copyCA = copyCA;
@@ -285,55 +283,44 @@
     // sticky CTA
     const stickyLink = document.getElementById('stickyLink');
     window.addEventListener('scroll', ()=>{
-      if (window.scrollY > 480) stickyLink.classList.remove('hidden');
+      if (window.scrollY > 560) stickyLink.classList.remove('hidden');
       else stickyLink.classList.add('hidden');
     }, {passive:true});
 
-    // ensure hero video plays on iOS
+    // hero video autoplay reliability
     const vid = document.getElementById('heroVideo');
-    function forcePlay(){ const p = vid.play?.(); if (p?.catch) p.catch(()=>{}); }
-    document.addEventListener('visibilitychange', ()=>{ if (!document.hidden) forcePlay(); }, {passive:true});
-    window.addEventListener('touchend', forcePlay, { once:true, passive:true });
+    function ensurePlay(){ const p = vid.play?.(); if(p?.catch) p.catch(()=>{}); }
+    document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) ensurePlay(); }, {passive:true});
+    window.addEventListener('touchend', ensurePlay, {once:true, passive:true});
 
-    // bubbles animation
+    // bubbles
     (function(){
-      const c = document.getElementById('bubbles');
-      const ctx = c.getContext('2d');
-      let W,H, dpr = Math.max(1, window.devicePixelRatio || 1);
-      const bubbles = [];
-      function resize(){
-        const rect = c.parentElement.getBoundingClientRect();
-        W = Math.floor(rect.width); H = Math.floor(rect.height);
-        c.width = W * dpr; c.height = H * dpr; c.style.width = W+'px'; c.style.height = H+'px';
+      const c = document.getElementById('bubbles'), ctx = c.getContext('2d');
+      let W,H,dpr=Math.max(1,window.devicePixelRatio||1), B=[];
+      function size(){
+        const r=c.parentElement.getBoundingClientRect();
+        W=Math.floor(r.width); H=Math.floor(r.height);
+        c.width=W*dpr; c.height=H*dpr; c.style.width=W+'px'; c.style.height=H+'px';
         ctx.setTransform(dpr,0,0,dpr,0,0);
       }
       function spawn(){
-        bubbles.length = 0;
-        for(let i=0;i<22;i++){
-          bubbles.push({
-            x: Math.random()*W,
-            y: H + Math.random()*H*0.4,
-            r: 2 + Math.random()*6,
-            s: 0.6 + Math.random()*1.2,
-            a: 0.18 + Math.random()*0.22
-          });
+        B.length=0;
+        for(let i=0;i<26;i++){
+          B.push({x:Math.random()*W,y:H+Math.random()*H*.35,r:1.8+Math.random()*6.2,s:.6+Math.random()*1.3,a:.18+Math.random()*.22});
         }
       }
       function tick(){
         ctx.clearRect(0,0,W,H);
-        for(const b of bubbles){
-          b.y -= b.s;
-          b.x += Math.sin(b.y*0.02)*0.3;
-          if (b.y < -10) { b.y = H + 10; b.x = Math.random()*W; }
-          ctx.beginPath();
-          ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-          ctx.fillStyle = `rgba(255,255,255,${b.a})`;
-          ctx.fill();
+        for(const b of B){
+          b.y-=b.s; b.x+=Math.sin(b.y*.02)*.35;
+          if(b.y<-12){ b.y=H+12; b.x=Math.random()*W; }
+          ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+          ctx.fillStyle=`rgba(255,255,255,${b.a})`; ctx.fill();
         }
         requestAnimationFrame(tick);
       }
-      resize(); spawn(); tick();
-      window.addEventListener('resize', ()=>{resize(); spawn();});
+      size(); spawn(); tick();
+      window.addEventListener('resize', ()=>{size(); spawn();});
     })();
   </script>
 </body>
