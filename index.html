@@ -1,253 +1,259 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>$NARR — Ride the Meme Wave</title>
+  <meta name="description" content="$NARR on Abstract. Weekly events, giveaways, culture-first visuals, and a pod that ships." />
+  <meta property="og:title" content="$NARR — Ride the Meme Wave" />
+  <meta property="og:description" content="Weekly events, giveaways, and a pod that ships. The penguins can keep the ice. We take the ocean." />
+  <meta property="og:image" content="og_narpe.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://www.narrthenarwhal.com/" />
 
-  <!-- Fonts + Tailwind -->
-  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN (simple static deploy) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            narpe: { teal:'#16c7be', deep:'#0b1833', gold:'#ffd75e', ice:'#e6f7f7', violet:'#6a00ff' }
-          },
-          fontFamily: {
-            display:['Luckiest Guy','system-ui','sans-serif'],
-            sans:['Inter','system-ui','sans-serif']
-          },
-          dropShadow: { cartoon: '0 3px 0 rgba(0,0,0,.45)' }
-        }
-      }
-    }
-  </script>
-
-  <!-- Social -->
-  <meta property="og:title" content="$NARR — Ride the Meme Wave">
-  <meta property="og:description" content="A community driven memecoin on Abstract. Weekly events & giveaways, collabs, and a future Dapp.">
-  <meta property="og:image" content="og_narpe.jpg">
-  <meta name="theme-color" content="#000000">
 
   <style>
-    /* global black with subtle vignette + grain */
-    body {
-      background: radial-gradient(1200px 700px at 50% -10%, rgba(22,199,190,.06), transparent 60%),
-                  radial-gradient(900px 600px at 80% 120%, rgba(106,0,255,.07), transparent 70%),
-                  #000;
+    :root{
+      --teal:#16c7be;
+      --ink:#0b1220;
+      --glass:rgba(255,255,255,.08);
+      --glass-border:rgba(255,255,255,.14);
     }
-    .grain::before{
-      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 0 .05 .08 .05 0 0 0'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-      opacity:.25; mix-blend-mode:soft-light;
+    body{
+      color:#fff;
+      background:
+        radial-gradient(1200px 700px at 50% -10%, rgba(22,199,190,.06), transparent 60%),
+        radial-gradient(900px 600px at 80% 120%, rgba(106,0,255,.07), transparent 70%),
+        #000;
+      background-repeat:no-repeat;
+      animation:drift 18s ease-in-out infinite alternate;
     }
-
-    .glass { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.10); }
-    .section-card { border:1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.4); border-radius: 1rem; padding: 1.5rem; }
-
-    /* Reveal on scroll */
-    .reveal { opacity:0; transform: translateY(12px); transition: all .6s ease; }
-    .reveal.show { opacity:1; transform: translateY(0); }
-    .reveal-left { opacity:0; transform: translateX(-16px); transition: all .7s ease; }
-    .reveal-left.show { opacity:1; transform: translateX(0); }
-    .reveal-right { opacity:0; transform: translateX(16px); transition: all .7s ease; }
-    .reveal-right.show { opacity:1; transform: translateX(0); }
-
-    /* CTA ripple */
-    .btn-ripple { position: relative; overflow: hidden; }
-    .btn-ripple::after {
-      content:""; position:absolute; width:0; height:0; border-radius:9999px;
-      background: radial-gradient(closest-side, rgba(255,255,255,.35), transparent);
-      transform: translate(-50%, -50%); opacity:0; transition: width .4s ease, height .4s ease, opacity .6s ease;
-      left: var(--rx, 50%); top: var(--ry, 50%); width: var(--rw, 0px); height: var(--rh, 0px); opacity: var(--rop, 0);
+    @keyframes drift{
+      0%{background-position:0 0, 100% 100%}
+      100%{background-position:0 40px, 100% 60px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      body{animation:none}
     }
 
-    /* Hero overlay for readability */
-    .hero-overlay { background: linear-gradient(180deg, rgba(0,0,0,.70), rgba(0,0,0,.45) 40%, rgba(0,0,0,.75)); }
+    /* Glass helpers */
+    .glass{
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
+    }
+    .glass-dark{
+      background:linear-gradient(180deg, rgba(11,18,32,.92), rgba(11,18,32,.86));
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+    }
 
-    @media (prefers-reduced-motion: reduce){
-      .reveal, .reveal-left, .reveal-right { transition:none; }
+    /* Hero */
+    .hero{
+      min-height:72vh;
+    }
+    .hero video{
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover;
+      filter:saturate(1.05) contrast(1.02);
+    }
+    .hero::after{ /* dark vignette overlay for text contrast */
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(150% 100% at 50% 0%, transparent 20%, rgba(0,0,0,.35) 80%);
+      pointer-events:none;
+    }
+
+    /* Bubbles canvas */
+    #bubbles{
+      position:absolute; inset:0;
+      z-index:0; /* behind content but above video */
+      pointer-events:none;
+    }
+
+    /* Header bar & menu */
+    .bar{
+      background:linear-gradient(180deg, rgba(11,18,32,.85), rgba(11,18,32,.78));
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .menu-panel{
+      background: linear-gradient(180deg, rgba(6,10,18,.96), rgba(10,14,24,.92));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+    }
+
+    /* OG image block integration */
+    .og-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid var(--glass-border);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .og-card::after{ /* subtle vignette to sit it into the black */
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(120% 80% at 50% -10%, rgba(0,0,0,.25), transparent 40%),
+                 radial-gradient(120% 80% at 50% 110%, rgba(0,0,0,.28), transparent 40%);
+      pointer-events:none;
+    }
+
+    /* Buttons */
+    .btn-primary{
+      background:var(--teal); color:#0a0f1a; font-weight:800;
+      box-shadow:0 8px 30px rgba(22,199,190,.35);
+    }
+    .btn{
+      border:1px solid var(--glass-border);
+      background:rgba(255,255,255,.06);
+    }
+
+    /* Section cards */
+    .card{
+      border:1px solid var(--glass-border);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius:18px;
+    }
+
+    /* Sticky CTA on mobile */
+    #stickyCTA{ display:none; }
+    @media (max-width:768px){
+      #stickyCTA.show{ display:block; }
     }
   </style>
 </head>
-<body class="grain text-white font-sans">
+<body class="antialiased selection:bg-teal-300/20 selection:text-white">
+  <!-- HEADER -->
+  <header id="top" class="hero relative overflow-hidden">
+    <!-- video -->
+    <video id="heroVideo" autoplay muted playsinline loop preload="auto" poster="hero_poster.jpeg">
+      <source src="hero_video.mp4" type="video/mp4" playsinline>
+    </video>
+    <!-- bubbles -->
+    <canvas id="bubbles"></canvas>
 
-  <!-- NAV -->
-  <nav class="fixed top-0 inset-x-0 z-50">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="mt-3 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl px-4 py-3 flex items-center justify-between">
-        <a href="#top" class="flex items-center gap-3">
-          <span class="font-display tracking-wide text-xl">$NARR</span>
-        </a>
-        <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#what" class="hover:text-narpe-teal">About</a>
-          <a href="#features" class="hover:text-narpe-teal">Features</a>
-          <a href="#playbook" class="hover:text-narpe-teal">Playbook</a>
-          <a href="#join" class="hover:text-narpe-teal">Join</a>
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-             class="ml-2 px-4 py-2 rounded-xl bg-narpe-teal text-black font-semibold hover:opacity-95 transition">
-             DEXScreener
-          </a>
+    <!-- top nav -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 pt-6">
+      <div class="bar rounded-3xl px-5 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="font-extrabold text-2xl tracking-tight">$NARR</span>
         </div>
-        <button id="mobBtn" class="md:hidden px-3 py-2 rounded-xl border border-white/15">Menu</button>
-      </div>
-    </div>
-    <!-- Mobile menu (emptied except Join the Pod) -->
-    <div id="mobMenu" class="hidden md:hidden mx-auto max-w-6xl px-4">
-      <div class="mt-2 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl px-4 py-3 grid gap-2">
-        <a href="#join" class="py-2">Join the Pod</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header id="top" class="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-hidden">
-    <div class="absolute inset-0 -z-10">
-      <video id="heroVideo" class="w-full h-full object-cover"
-             autoplay muted playsinline loop preload="auto" poster="hero_poster.jpeg">
-        <source src="hero_video.mp4" type="video/mp4">
-      </video>
-      <div class="absolute inset-0 hero-overlay"></div>
-      <!-- bubbles canvas -->
-      <canvas id="fx" class="absolute inset-0"></canvas>
-    </div>
-
-    <div class="relative max-w-6xl mx-auto px-4 grid lg:grid-cols-12 gap-10 items-center">
-      <div class="lg:col-span-7 reveal-left">
-        <h1 class="font-display text-5xl sm:text-6xl leading-tight">
-          Ride the Meme Wave
-          <span class="block text-narpe-teal drop-shadow-cartoon">$NARR on Abstract</span>
-        </h1>
-        <p class="mt-5 text-lg text-white/90 max-w-2xl">
-          A community driven memecoin on the Abstract chain. The narwhal taking on the penguin meta with fast visuals, faster memes and real momentum.
-        </p>
-
-        <div class="mt-6 flex flex-wrap items-center gap-3">
-          <span class="text-sm text-white/85 bg-white/10 border border-white/15 rounded-full px-3 py-1">
-            Chain: <span class="font-semibold ml-1">Abstract</span>
-          </span>
-          <span class="text-sm text-white/85 bg-white/10 border border-white/15 rounded-full px-3 py-1 flex items-center gap-2">
-            CA: <code id="ca" class="bg-black/40 px-1.5 py-0.5 rounded border border-white/10">TBA</code>
-            <button onclick="copyCA()" class="text-xs px-2 py-1 rounded bg-[#ffd75e] text-black font-bold hover:opacity-90 transition">Copy</button>
-          </span>
-        </div>
-
-        <div class="mt-7 flex flex-wrap gap-3">
-          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-             class="btn-ripple px-5 py-3 rounded-xl bg-narpe-teal text-black font-extrabold hover:opacity-95 transition">
-            DEXScreener
-          </a>
-          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09"
-             class="btn-ripple px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Twitter / X</a>
-          <a href="https://t.me/NarrTheNarwhalonabs"
-             class="btn-ripple px-5 py-3 rounded-xl border border-white/15 text-white/90 hover:bg-white/10 transition">Telegram</a>
-        </div>
+        <button id="openMenu" class="px-4 py-2 rounded-2xl border border-white/15 hover:bg-white/5 transition" aria-label="Open menu">Menu</button>
       </div>
 
-      <!-- Decorative card hidden on mobile -->
-      <div class="lg:col-span-5 hidden lg:block reveal-right">
-        <div class="relative h-full rounded-3xl glass border border-white/10 overflow-hidden">
-          <svg class="absolute inset-0 w-full h-full opacity-[.06]" xmlns="http://www.w3.org/2000/svg">
-            <defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" fill="none" stroke="white"/></pattern></defs>
-            <rect width="100%" height="100%" fill="url(#g)"/>
-          </svg>
-          <div class="absolute inset-0"
-               style="background:
-                 radial-gradient(45% 40% at 70% 30%, rgba(22,199,190,.18), transparent 60%),
-                 radial-gradient(35% 35% at 30% 70%, rgba(106,0,255,.22), transparent 65%);">
-          </div>
-        </div>
+      <!-- menu panel -->
+      <div id="menuPanel" class="menu-panel rounded-3xl mt-3 p-4 hidden">
+        <a href="#join" class="block px-4 py-3 rounded-2xl hover:bg-white/5">Join the Pod</a>
+      </div>
+    </div>
+
+    <!-- hero content -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 pb-10 pt-10 md:pt-16">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+        Ride the meme wave.<br class="hidden md:block" />
+        The narwhal taking on the penguin meta.
+      </h1>
+
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        <span class="glass text-white/90 px-4 py-2 rounded-2xl">Chain: <b class="text-white">Abstract</b></span>
+        <span class="glass text-white/90 px-4 py-2 rounded-2xl flex items-center gap-2">
+          CA: <span id="ca" class="font-mono">TBA</span>
+          <button class="ml-1 px-2 py-1 rounded-lg bg-yellow-400/90 text-black text-sm font-bold" onclick="copyCA()" aria-label="Copy contract address">Copy</button>
+        </span>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="btn-primary px-5 py-3 rounded-xl">DEXScreener</a>
+        <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn px-5 py-3 rounded-xl">Twitter</a>
+        <a href="https://t.me/NarrTheNarwhalonabs" class="btn px-5 py-3 rounded-xl">Telegram</a>
       </div>
     </div>
   </header>
 
-  <!-- INSERTED IMAGE BLOCK -->
-  <section class="relative z-10">
-    <div class="max-w-6xl mx-auto px-4 pb-6">
-      <div class="reveal rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl">
-        <img src="og_narpe.jpg" alt="NARR visual" class="w-full h-auto object-cover">
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTENT -->
   <main>
-    <section id="what" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
-      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">What $NARR Is</h2>
-      <div class="section-card reveal">
+    <!-- OG IMAGE BLOCK (smaller, centered, with breathing room) -->
+    <section class="max-w-6xl mx-auto px-4 pt-10 pb-4">
+      <div class="og-card mx-auto max-w-2xl">
+        <img src="og_narpe.jpg" alt="NARR key visual" class="w-full h-auto block" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <!-- WHAT -->
+    <section id="what" class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">WHAT $NARR IS</h2>
+      <div class="card p-6">
         <p class="text-white/90">
-          A community driven token built for speed, with sharp visuals, relentless memes and a character you can spot from a mile away. No corporate fluff, just culture, momentum and a crew that ships.
+          A community driven token built for speed, with sharp visuals, relentless memes and a character you can spot from a mile away.
+          No corporate fluff, just culture, momentum and a crew that ships.
         </p>
       </div>
     </section>
 
-    <section id="countermeta" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
-      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Counter Meta</h2>
-      <div class="section-card reveal">
+    <!-- COUNTER META -->
+    <section class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">THE COUNTER META</h2>
+      <div class="card p-6">
         <p class="text-white/90">
-          Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. <span class="font-semibold">$NARR</span> arrived. If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
+          Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. $NARR arrived. If they waddle we spear.
+          If they echo we make noise. The feed needed a new main character and we showed up with a wave.
         </p>
       </div>
     </section>
 
-    <section id="legend" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
-      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Legend</h2>
-      <div class="section-card reveal">
+    <!-- LEGEND -->
+    <section class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">THE LEGEND</h2>
+      <div class="card p-6">
         <p class="text-white/90">
-          On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current. Every chart is water and water belongs to the narwhal.
+          On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current.
+          Every chart is water and water belongs to the narwhal.
         </p>
       </div>
     </section>
 
-    <section id="features" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
-      <h2 class="font-display text-3xl sm:text-4xl mb-6 text-narpe-teal">Planned Features</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="section-card reveal">
-          <div class="text-[#ffd75e] font-extrabold mb-2">Weekly Events &amp; Giveaways</div>
-          <p class="text-white/85 text-sm">Raids, contests, surprises. Every week is a new wave.</p>
-        </div>
-        <div class="section-card reveal">
-          <div class="text-[#ffd75e] font-extrabold mb-2">Collabs &amp; Community Raids</div>
-          <p class="text-white/85 text-sm">Cross-project stunts with Abstract friends, coordinated meme raids and playful rivalry.</p>
-        </div>
-        <div class="section-card reveal">
-          <div class="text-[#ffd75e] font-extrabold mb-2">Future Dapp</div>
-          <p class="text-white/85 text-sm">Major Dapp in the works, details to be revealed.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 lg:py-16">
-      <h2 class="font-display text-3xl sm:text-4xl mb-4 text-narpe-teal">The Playbook</h2>
-      <div class="section-card reveal">
+    <!-- FEATURES -->
+    <section class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">PLANNED FEATURES</h2>
+      <div class="card p-6">
         <p class="text-white/90">
-          Run weekly events. Drop surprise giveaways. Highlight the best community posts. Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
+          Weekly events and giveaways. Community raids with Abstract friends, coordinated stunts and playful rivalry with the penguin crowd.
+          A major future Dapp is in the works with details to be revealed soon.
         </p>
       </div>
     </section>
 
-    <section id="join" class="max-w-6xl mx-auto px-4 pb-16">
-      <div class="rounded-3xl p-1" style="background: linear-gradient(135deg, rgba(22,199,190,.35), rgba(255,255,255,.05), rgba(106,0,255,.35));">
-        <div class="rounded-[22px] bg-white/5 backdrop-blur-xl border border-white/15 p-8 lg:p-10 reveal">
-          <h2 class="font-display text-3xl sm:text-4xl leading-tight mb-4">Join the Pod</h2>
-          <p class="text-white/90 text-lg leading-relaxed max-w-3xl">
-            We will not promise the world — we will flood the timeline. <span class="font-semibold">$NARR</span> turns holders into a pod that is loud, loyal and impossible to ignore. The penguins can keep the ice. <span class="font-semibold">We take the ocean.</span>
-          </p>
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
-               class="btn-ripple px-5 py-3 rounded-xl bg-narpe-teal text-black font-extrabold drop-shadow-cartoon hover:scale-[1.02] transition">DEXScreener</a>
-            <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn-ripple px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Twitter / X</a>
-            <a href="https://t.me/NarrTheNarwhalonabs" class="btn-ripple px-5 py-3 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 transition">Telegram</a>
-          </div>
+    <!-- PLAYBOOK -->
+    <section class="max-w-6xl mx-auto px-4 py-10">
+      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">THE PLAYBOOK</h2>
+      <div class="card p-6">
+        <p class="text-white/90">
+          Run weekly events. Drop surprise giveaways. Highlight the best community posts. Share art people actually use as PFPs.
+          Every moment becomes movement, every wave builds momentum.
+        </p>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section id="join" class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-3xl sm:text-4xl mb-4 text-[var(--teal)] font-extrabold">Join the Pod</h2>
+      <div class="card p-6">
+        <p class="text-white/90">
+          We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore.
+          The penguins can keep the ice. We take the ocean.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="btn-primary px-5 py-3 rounded-xl">DEXScreener</a>
+          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn px-5 py-3 rounded-xl">Twitter</a>
+          <a href="https://t.me/NarrTheNarwhalonabs" class="btn px-5 py-3 rounded-xl">Telegram</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="border-t border-white/10">
+  <footer class="mt-10 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-white/60 text-sm">© <span id="year"></span> NARR • Not financial advice</p>
       <div class="flex gap-3">
@@ -258,6 +264,11 @@
     </div>
   </footer>
 
+  <!-- Sticky mobile CTA -->
+  <div id="stickyCTA" class="fixed bottom-4 inset-x-4 z-50">
+    <a href="#join" class="hidden w-full text-center px-4 py-3 rounded-xl btn-primary" id="stickyLink">Join the Pod</a>
+  </div>
+
   <script>
     // year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -267,86 +278,72 @@
       const el = document.getElementById('ca');
       const txt = el.textContent.trim();
       navigator.clipboard.writeText(txt).then(()=>{
-        el.insertAdjacentHTML('afterend','<span class="ml-2 text-xs text-white/70">Copied!</span>');
-        setTimeout(()=>{ const s = el.parentElement.querySelector('span.text-xs'); if(s) s.remove(); },1200);
+        const note = document.createElement('span');
+        note.className = 'ml-2 text-xs text-white/70';
+        note.textContent = 'Copied!';
+        el.after(note);
+        setTimeout(()=>note.remove(), 1200);
       });
     }
+    window.copyCA = copyCA;
 
-    // mobile menu (only Join the Pod)
-    const mobBtn = document.getElementById('mobBtn');
-    const mobMenu = document.getElementById('mobMenu');
-    if(mobBtn){ mobBtn.addEventListener('click', ()=> mobMenu.classList.toggle('hidden')); }
+    // menu
+    const openMenu = document.getElementById('openMenu');
+    const menuPanel = document.getElementById('menuPanel');
+    openMenu.addEventListener('click', ()=> menuPanel.classList.toggle('hidden'));
 
-    // CTA ripple
-    document.querySelectorAll('.btn-ripple').forEach(btn=>{
-      btn.addEventListener('pointerenter', e=>{
-        const r = btn.getBoundingClientRect();
-        const x = e.clientX - r.left, y = e.clientY - r.top;
-        btn.style.setProperty('--rx', x+'px');
-        btn.style.setProperty('--ry', y+'px');
-        btn.style.setProperty('--rw', '220px');
-        btn.style.setProperty('--rh', '220px');
-        btn.style.setProperty('--rop', '1');
-      });
-      btn.addEventListener('pointerleave', ()=>{
-        btn.style.setProperty('--rw', '0px');
-        btn.style.setProperty('--rh', '0px');
-        btn.style.setProperty('--rop', '0');
-      });
-    });
+    // sticky CTA
+    const stickyLink = document.getElementById('stickyLink');
+    window.addEventListener('scroll', ()=>{
+      if (window.scrollY > 480) stickyLink.classList.remove('hidden');
+      else stickyLink.classList.add('hidden');
+    }, {passive:true});
 
-    // HERO video autoplay helpers
+    // ensure hero video plays on iOS
     const vid = document.getElementById('heroVideo');
-    function tryPlay(){ if (vid) { const p = vid.play(); if (p && p.catch) p.catch(()=>{}); } }
-    if (vid) {
-      vid.addEventListener('loadedmetadata', tryPlay, { once:true });
-      window.addEventListener('touchstart', tryPlay, { once:true, passive:true });
-      window.addEventListener('click', tryPlay, { once:true });
-    }
+    function forcePlay(){ if (!vid) return; const p = vid.play?.(); if (p?.catch) p.catch(()=>{}); }
+    document.addEventListener('visibilitychange', ()=>{ if (!document.hidden) forcePlay(); }, {passive:true});
+    window.addEventListener('touchend', forcePlay, { once:true, passive:true });
 
-    // bubbles
-    const canvas = document.getElementById('fx');
-    const ctx = canvas.getContext('2d');
-    let w, h, bubbles = [];
-    function resize(){
-      w = canvas.width = canvas.offsetWidth;
-      h = canvas.height = canvas.offsetHeight;
-      const count = Math.max(30, Math.floor(w * h / 40000));
-      bubbles = Array.from({length: count}, ()=>newBubble());
-    }
-    function newBubble(){
-      const r = Math.random()*2.2 + 0.8;
-      return {
-        x: Math.random()*w,
-        y: h + Math.random()*h*0.3,
-        r, s: Math.random()*0.6 + 0.3,
-        o: Math.random()*0.25 + 0.05,
-        wob: Math.random()*0.8 + 0.3, ang: Math.random()*Math.PI*2
-      };
-    }
-    function tick(){
-      ctx.clearRect(0,0,w,h);
-      bubbles.forEach(b=>{
-        b.y -= b.s; b.ang += 0.02; b.x += Math.sin(b.ang) * b.wob * 0.2;
-        if (b.y < -10) { Object.assign(b, newBubble()); b.y = h + 10; }
-        ctx.globalAlpha = b.o;
-        ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-        const grd = ctx.createRadialGradient(b.x-0.5*b.r, b.y-0.7*b.r, 0, b.x, b.y, b.r);
-        grd.addColorStop(0, 'rgba(255,255,255,0.35)');
-        grd.addColorStop(1, 'rgba(255,255,255,0.08)');
-        ctx.fillStyle = grd; ctx.fill();
-      });
-      requestAnimationFrame(tick);
-    }
-    window.addEventListener('resize', resize);
-    resize(); tick();
-
-    // reveal on scroll
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }});
-    },{ threshold:.12 });
-    revealEls.forEach(el=>io.observe(el));
+    // bubbles animation (reliable sizing + start)
+    (function(){
+      const c = document.getElementById('bubbles');
+      const ctx = c.getContext('2d');
+      let W,H, dpr = Math.max(1, window.devicePixelRatio || 1);
+      const bubbles = [];
+      function resize(){
+        const rect = c.parentElement.getBoundingClientRect();
+        W = Math.floor(rect.width); H = Math.floor(rect.height);
+        c.width = W * dpr; c.height = H * dpr; c.style.width = W+'px'; c.style.height = H+'px';
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+      function spawn(){
+        for(let i=0;i<22;i++){
+          bubbles.push({
+            x: Math.random()*W,
+            y: H + Math.random()*H*0.4,
+            r: 2 + Math.random()*6,
+            s: 0.6 + Math.random()*1.2,
+            a: 0.18 + Math.random()*0.22
+          });
+        }
+      }
+      function tick(){
+        ctx.clearRect(0,0,W,H);
+        for(const b of bubbles){
+          b.y -= b.s;
+          b.x += Math.sin(b.y*0.02)*0.3;
+          if (b.y < -10) { b.y = H + 10; b.x = Math.random()*W; }
+          ctx.beginPath();
+          ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${b.a})`;
+          ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      }
+      resize(); spawn(); tick();
+      window.addEventListener('resize', resize);
+    })();
   </script>
 </body>
 </html>
