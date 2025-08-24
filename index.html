@@ -15,6 +15,8 @@
     .title-shadow{text-shadow:0 3px 10px rgba(0,0,0,.65), 0 1px 0 rgba(0,0,0,.8)}
     .chip-shadow{text-shadow:0 2px 6px rgba(0,0,0,.55)}
     .hl-yellow{color:#F7D047;font-weight:800}
+    /* >>> Fix couleur : enlever toute ombre/filtre sur le span du H1 */
+    .no-shadow{ text-shadow:none !important; filter:none !important; }
   </style>
 </head>
 <body class="min-h-full text-white selection:bg-teal-300 selection:text-black">
@@ -52,8 +54,8 @@
       <div class="w-full rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep md:translate-y-6">
         <h1 class="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl title-shadow">
           Ride the Meme Wave
-          <!-- même gradient que le logo, sans ombre foncée -->
-          <span class="block brand-grad">$NARR on Abstract</span>
+          <!-- même gradient que le logo, sans ombre -->
+          <span class="block brand-grad no-shadow">$NARR on Abstract</span>
         </h1>
 
         <!-- Badges -->
@@ -96,8 +98,8 @@
   <!-- CONTENT -->
   <main>
     <section id="what" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">
-        WHAT <span class="brand-grad">$NARR</span> IS
+      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
+        <span class="brand-grad">WHAT $NARR IS</span>
       </h2>
       <div class="rounded-2xl card p-6 text-white/90">
         A community driven token built for speed, with sharp visuals and a character you can spot from a mile away.
@@ -106,7 +108,9 @@
     </section>
 
     <section id="meta" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE COUNTER META</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
+        <span class="brand-grad">THE COUNTER META</span>
+      </h2>
       <div class="rounded-2xl card p-6 text-white/90">
         Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. $NARR arrived.
         If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
@@ -114,7 +118,9 @@
     </section>
 
     <section id="legend" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE LEGEND</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
+        <span class="brand-grad">THE LEGEND</span>
+      </h2>
       <div class="rounded-2xl card p-6 text-white/90">
         On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current.
         Every chart is water and water belongs to the narwhal.
@@ -123,7 +129,9 @@
 
     <!-- PLANNED FEATURES split in 3 cards -->
     <section id="features" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-6">PLANNED FEATURES</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl mb-6">
+        <span class="brand-grad">PLANNED FEATURES</span>
+      </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="rounded-2xl card p-6">
           <h3 class="hl-yellow text-xl mb-2">Weekly Events & Giveaways</h3>
@@ -141,7 +149,9 @@
     </section>
 
     <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE PLAYBOOK</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
+        <span class="brand-grad">THE PLAYBOOK</span>
+      </h2>
       <div class="rounded-2xl card p-6 text-white/90">
         Run weekly events. Drop surprise giveaways. Highlight the best community posts.
         Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
@@ -149,7 +159,9 @@
     </section>
 
     <section id="join" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">Join the Pod</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl mb-3">
+        <span class="brand-grad">Join the Pod</span>
+      </h2>
       <div class="rounded-2xl glass p-6 text-white shadow-deep">
         <p class="text-white/90">
           We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore.
