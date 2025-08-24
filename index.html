@@ -32,15 +32,22 @@
     </div>
   </header>
 
-  <!-- Drawer over hero -->
-  <div id="drawer" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 bg-black/30" onclick="toggleMenu()"></div>
-    <div class="mx-4 mt-24 rounded-3xl bg-black text-white border border-white/10 p-4 shadow-deep">
-      <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" class="block px-4 py-3 rounded-xl hover:bg-white/10">DEXScreener</a>
-      <a href="https://x.com/NarrTheNarwhal" target="_blank" class="block px-4 py-3 rounded-xl hover:bg-white/10">X</a>
-      <a href="https://t.me/NarrTheNarwhalonabs" target="_blank" class="block px-4 py-3 rounded-xl hover:bg-white/10">Telegram</a>
-    </div>
+<!-- Drawer over hero -->
+<div id="drawer" class="fixed inset-0 z-50 hidden">
+  <!-- overlay (capte le clic pour fermer) -->
+  <div class="absolute inset-0 bg-black/30" onclick="toggleMenu()"></div>
+
+  <!-- panneau (au-dessus de l'overlay) -->
+  <div class="relative z-10 mx-4 mt-24 rounded-3xl bg-black text-white border border-white/10 p-4 shadow-deep"
+       onclick="event.stopPropagation()">
+    <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener"
+       class="block px-4 py-3 rounded-xl hover:bg-white/10">DEXScreener</a>
+    <a href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener"
+       class="block px-4 py-3 rounded-xl hover:bg-white/10">X</a>
+    <a href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener"
+       class="block px-4 py-3 rounded-xl hover:bg-white/10">Telegram</a>
   </div>
+</div>
 
   <!-- HERO -->
   <section id="hero" class="relative min-h-[100svh] md:min-h-[92vh] overflow-hidden">
