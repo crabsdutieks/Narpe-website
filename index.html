@@ -7,11 +7,24 @@
   <title>$NARR — Ride the Meme Wave</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .glass{background:rgba(255,255,255,.08);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12)}
-    .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
-    .shadow-deep{box-shadow:0 8px 30px rgba(0,0,0,.35)}
-    html{scroll-behavior:smooth}
+    :root{
+      --ink:#0B1220;
+      --glass: rgba(255,255,255,.08);
+      --glass-brd: rgba(255,255,255,.12);
+      --card: rgba(255,255,255,.05);
+      --card-brd: rgba(255,255,255,.10);
+      --teal:#19E3D6;
+      --hi:#F9D34E; /* yellow highlight for key info */
+    }
+    .glass{background:var(--glass);backdrop-filter:blur(6px);border:1px solid var(--glass-brd)}
+    .card{background:var(--card);border:1px solid var(--card-brd)}
+    .shadow-deep{box-shadow:0 10px 40px rgba(0,0,0,.35)}
     .brand-grad{background:linear-gradient(90deg,#19E3D6 0%,#8EF8D0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    html{scroll-behavior:smooth}
+    /* yellow highlight styles */
+    .hi-chip{background:var(--hi); color:#111827}
+    .hi-text{position:relative}
+    .hi-text::after{content:""; position:absolute; left:-2px; right:-2px; bottom:0; height:.45em; background:linear-gradient(0deg,rgba(249,211,78,.6),rgba(249,211,78,0)); z-index:-1; border-radius:.25rem}
   </style>
 </head>
 <body class="min-h-full text-white selection:bg-teal-300 selection:text-black">
@@ -20,8 +33,15 @@
   <header class="fixed top-0 inset-x-0 z-40">
     <div class="mx-auto max-w-6xl px-4 py-3">
       <div class="flex items-center justify-between rounded-2xl bg-[#0B1220]/80 backdrop-blur-sm border border-white/10 px-4 py-2 shadow-deep">
-        <div class="font-extrabold text-xl">
-          <span class="text-white/90">$</span><span class="brand-grad">NARR</span>
+        <!-- Brand: custom $ badge + gradient NARR -->
+        <div class="flex items-center gap-2">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl"
+                style="background:conic-gradient(from 220deg, #0EE9D8, #77F0D6, #0EE9D8); box-shadow:0 0 0 2px rgba(255,255,255,.15) inset;">
+            <span class="font-black text-[#0B1220] text-lg leading-none">$</span>
+          </span>
+          <span class="font-extrabold text-xl tracking-tight">
+            <span class="brand-grad">NARR</span>
+          </span>
         </div>
         <button onclick="toggleMenu()" class="rounded-2xl border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 transition">Menu</button>
       </div>
@@ -36,35 +56,41 @@
     </div>
   </div>
 
-  <!-- HERO: taller + centered -->
-  <section id="hero" class="relative min-h-[100svh] md:min-h-[92vh] overflow-hidden">
+  <!-- HERO (slightly shorter than previous, better blend) -->
+  <section id="hero" class="relative min-h-[88svh] md:min-h-[84vh] overflow-hidden">
     <div class="absolute inset-0">
       <video class="absolute inset-0 w-full h-full object-cover" autoplay muted playsinline loop poster="/hero.jpeg">
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-      <div class="absolute inset-0 bg-black/30"></div>
+      <div class="absolute inset-0 bg-black/28"></div>
+      <!-- top & bottom soft gradients for readability + smoother join -->
+      <div class="absolute inset-x-0 top-0 h-24 md:h-28 bg-gradient-to-b from-black/35 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 h-44 md:h-52 bg-gradient-to-b from-transparent to-black"></div>
     </div>
 
-    <div class="relative max-w-6xl mx-auto px-4 pt-32 pb-12 h-full flex items-end md:items-center">
-      <div class="w-full rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep md:translate-y-6">
-        <h1 class="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl">
-          Ride the Meme Wave
-          <span class="block brand-grad drop-shadow-[0_2px_0_rgba(0,0,0,0.4)]">$NARR on Abstract</span>
+    <div class="relative max-w-6xl mx-auto px-4 pt-28 pb-10 h-full flex items-end md:items-center">
+      <div class="w-full rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep md:translate-y-4">
+        <h1 class="font-extrabold leading-tight tracking-tight text-4xl sm:text-5xl lg:text-6xl">
+          <span class="hi-text">Ride the Meme Wave</span>
+          <span class="block">
+            <span class="brand-grad">$NARR on Abstract</span>
+          </span>
         </h1>
 
-        <!-- Badges -->
+        <!-- Badges with yellow key info -->
         <div class="flex flex-wrap gap-2 mt-5">
           <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs">
-            <span class="text-white/70">Chain:</span> <span class="font-semibold">Abstract</span>
+            <span class="text-white/70">Chain:</span>
+            <span class="hi-chip font-semibold px-2 py-0.5 rounded-lg">Abstract</span>
           </span>
 
           <!-- CA row: responsive, no overflow -->
-          <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs max-w-full">
+          <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-2.5 py-1.5 text-sm md:text-xs max-w-full">
             <span class="text-white/70">CA:</span>
-            <code id="ca" class="tracking-tight truncate max-w-[56vw] sm:max-w-[46vw] md:max-w-[36vw]">
+            <code id="ca" class="tracking-tight truncate max-w-[58vw] sm:max-w-[48vw] md:max-w-[38vw]">
               0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07
             </code>
-            <button onclick="copyCA()" class="shrink-0 rounded-lg bg-yellow-300 text-black text-xs font-bold px-2 py-1">Copy</button>
+            <button onclick="copyCA()" class="shrink-0 rounded-lg hi-chip text-xs font-bold px-2.5 py-1">Copy</button>
           </span>
         </div>
 
@@ -79,12 +105,10 @@
         </div>
       </div>
     </div>
-
-    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black"></div>
   </section>
 
-  <!-- OG image -->
-  <section class="max-w-5xl mx-auto px-4 pt-10 pb-6">
+  <!-- OG image block (better spacing) -->
+  <section class="max-w-5xl mx-auto px-4 pt-8 pb-6">
     <img src="/og_narpe.jpg" alt="NARR OG artwork"
          class="w-full rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.4)] object-cover" />
   </section>
@@ -92,39 +116,39 @@
   <!-- CONTENT -->
   <main>
     <section id="what" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">WHAT $NARR IS</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">WHAT <span class="hi-text">$NARR</span> IS</h2>
       <div class="rounded-2xl card p-6 text-white/90">
         A community driven token built for speed, with sharp visuals and a character you can spot from a mile away.
-        No corporate fluff, just culture, momentum and a crew that ships.
+        <span class="hi-text">No corporate fluff</span>, just culture, momentum and a crew that ships.
       </div>
     </section>
 
     <section id="meta" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE COUNTER META</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">THE COUNTER META</h2>
       <div class="rounded-2xl card p-6 text-white/90">
-        Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. $NARR arrived.
+        Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. <span class="hi-text">$NARR</span> arrived.
         If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
       </div>
     </section>
 
     <section id="legend" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE LEGEND</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">THE LEGEND</h2>
       <div class="rounded-2xl card p-6 text-white/90">
         On an ocean ruled by penguins a narwhal surfaced, horn shining, grin wide, and took the current.
-        Every chart is water and water belongs to the narwhal.
+        Every chart is water and <span class="hi-text">water belongs to the narwhal</span>.
       </div>
     </section>
 
     <section id="features" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">PLANNED FEATURES</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">PLANNED FEATURES</h2>
       <div class="rounded-2xl card p-6 text-white/90">
-        Weekly events and giveaways. Community raids with Abstract friends, coordinated stunts and playful rivalry with the penguin crowd.
+        <span class="hi-text">Weekly events & giveaways</span>. Community raids with Abstract friends, coordinated stunts and playful rivalry with the penguin crowd.
         A major future Dapp is in the works with details to be revealed soon.
       </div>
     </section>
 
     <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE PLAYBOOK</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">THE PLAYBOOK</h2>
       <div class="rounded-2xl card p-6 text-white/90">
         Run weekly events. Drop surprise giveaways. Highlight the best community posts.
         Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
@@ -132,10 +156,10 @@
     </section>
 
     <section id="join" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">Join the Pod</h2>
+      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] tracking-tight mb-3">Join the Pod</h2>
       <div class="rounded-2xl glass p-6 text-white shadow-deep">
         <p class="text-white/90">
-          We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore.
+          We will not promise the world, we will flood the timeline. <span class="hi-text">$NARR</span> turns holders into a pod that is loud, loyal and impossible to ignore.
           The penguins can keep the ice. We take the ocean.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
@@ -176,7 +200,7 @@
         setTimeout(()=>note.remove(), 1200);
       });
     }
-    // best-effort autoplay
+    // best-effort autoplay (some mobile browsers pause until interaction)
     window.addEventListener('load', ()=>{
       const v = document.querySelector('#hero video');
       try { const p=v.play(); if(p?.catch) p.catch(()=>{}); } catch(e){}
@@ -184,3 +208,4 @@
   </script>
 </body>
 </html>
+```0
