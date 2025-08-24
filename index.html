@@ -12,7 +12,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://www.narrthenarwhal.com/" />
 
-  <!-- Tailwind CDN (simple static deploy) -->
+  <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -24,83 +24,67 @@
     }
     body{
       color:#fff;
-      background:
-        radial-gradient(1200px 700px at 50% -10%, rgba(22,199,190,.06), transparent 60%),
-        radial-gradient(900px 600px at 80% 120%, rgba(106,0,255,.07), transparent 70%),
-        #000;
-      background-repeat:no-repeat;
-      animation:drift 18s ease-in-out infinite alternate;
-    }
-    @keyframes drift{
-      0%{background-position:0 0, 100% 100%}
-      100%{background-position:0 40px, 100% 60px}
-    }
-    @media (prefers-reduced-motion:reduce){
-      body{animation:none}
+      background:#000;
     }
 
-    /* Glass helpers */
-    .glass{
-      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
-      border:1px solid var(--glass-border);
-      backdrop-filter: blur(8px);
-    }
-    .glass-dark{
-      background:linear-gradient(180deg, rgba(11,18,32,.92), rgba(11,18,32,.86));
-      border:1px solid rgba(255,255,255,.08);
-      backdrop-filter: blur(10px);
-    }
-
-    /* Hero */
-    .hero{
-      min-height:72vh;
-    }
-    .hero video{
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover;
-      filter:saturate(1.05) contrast(1.02);
-    }
-    .hero::after{ /* dark vignette overlay for text contrast */
-      content:""; position:absolute; inset:0;
-      background:radial-gradient(150% 100% at 50% 0%, transparent 20%, rgba(0,0,0,.35) 80%);
-      pointer-events:none;
-    }
-
-    /* Bubbles canvas */
-    #bubbles{
-      position:absolute; inset:0;
-      z-index:0; /* behind content but above video */
-      pointer-events:none;
-    }
-
-    /* Header bar & menu */
+    /* ===== NAV / MENU ===== */
     .bar{
-      background:linear-gradient(180deg, rgba(11,18,32,.85), rgba(11,18,32,.78));
-      border:1px solid rgba(255,255,255,.1);
+      background:linear-gradient(180deg, rgba(11,18,32,.86), rgba(11,18,32,.78));
+      border:1px solid rgba(255,255,255,.10);
       box-shadow: 0 10px 30px rgba(0,0,0,.35);
     }
     .menu-panel{
-      background: linear-gradient(180deg, rgba(6,10,18,.96), rgba(10,14,24,.92));
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      background:linear-gradient(180deg, rgba(6,10,18,.96), rgba(10,14,24,.92));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 30px 80px rgba(0,0,0,.55);
     }
 
-    /* OG image block integration */
-    .og-card{
+    /* ===== HERO ===== */
+    .hero{
       position:relative;
       overflow:hidden;
-      border-radius:18px;
-      border:1px solid var(--glass-border);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      min-height:72vh;
+      isolation:isolate;
     }
-    .og-card::after{ /* subtle vignette to sit it into the black */
-      content:""; position:absolute; inset:0;
-      background:radial-gradient(120% 80% at 50% -10%, rgba(0,0,0,.25), transparent 40%),
-                 radial-gradient(120% 80% at 50% 110%, rgba(0,0,0,.28), transparent 40%);
+    .hero video{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      filter:saturate(1.05) contrast(1.02);
+      z-index:0;
+    }
+    /* Stronger overlay for readability */
+    .hero::after{
+      content:""; position:absolute; inset:0; z-index:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.50) 100%),
+        radial-gradient(120% 80% at 50% 0%, rgba(0,0,0,.42), transparent 55%);
       pointer-events:none;
     }
+    /* Glass block behind headline/buttons for guaranteed contrast */
+    .hero-glass{
+      background:linear-gradient(180deg, rgba(11,18,32,.78), rgba(11,18,32,.72));
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(8px);
+      border-radius:22px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    }
+    .hero h1{
+      text-shadow:0 2px 12px rgba(0,0,0,.6);
+    }
 
-    /* Buttons */
+    /* ===== BUBBLES CANVAS ===== */
+    #bubbles{
+      position:absolute; inset:0; z-index:1; pointer-events:none;
+    }
+
+    /* ===== GLASS CARDS ===== */
+    .card{
+      border:1px solid var(--glass-border);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius:18px;
+      backdrop-filter: blur(6px);
+    }
+
+    /* ===== BUTTONS ===== */
     .btn-primary{
       background:var(--teal); color:#0a0f1a; font-weight:800;
       box-shadow:0 8px 30px rgba(22,199,190,.35);
@@ -110,14 +94,20 @@
       background:rgba(255,255,255,.06);
     }
 
-    /* Section cards */
-    .card{
+    /* ===== OG IMAGE BLOCK (smaller + breathing room) ===== */
+    .og-card{
+      position:relative; overflow:hidden; border-radius:18px;
       border:1px solid var(--glass-border);
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .og-card::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(120% 80% at 50% -10%, rgba(0,0,0,.22), transparent 40%),
+        radial-gradient(120% 80% at 50% 110%, rgba(0,0,0,.26), transparent 40%);
     }
 
-    /* Sticky CTA on mobile */
+    /* Sticky CTA (mobile) */
     #stickyCTA{ display:none; }
     @media (max-width:768px){
       #stickyCTA.show{ display:block; }
@@ -125,16 +115,15 @@
   </style>
 </head>
 <body class="antialiased selection:bg-teal-300/20 selection:text-white">
-  <!-- HEADER -->
-  <header id="top" class="hero relative overflow-hidden">
-    <!-- video -->
+
+  <!-- ===== HEADER / HERO ===== -->
+  <header id="top" class="hero">
     <video id="heroVideo" autoplay muted playsinline loop preload="auto" poster="hero_poster.jpeg">
       <source src="hero_video.mp4" type="video/mp4" playsinline>
     </video>
-    <!-- bubbles -->
     <canvas id="bubbles"></canvas>
 
-    <!-- top nav -->
+    <!-- Top nav -->
     <div class="relative z-10 max-w-6xl mx-auto px-4 pt-6">
       <div class="bar rounded-3xl px-5 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -143,37 +132,38 @@
         <button id="openMenu" class="px-4 py-2 rounded-2xl border border-white/15 hover:bg-white/5 transition" aria-label="Open menu">Menu</button>
       </div>
 
-      <!-- menu panel -->
       <div id="menuPanel" class="menu-panel rounded-3xl mt-3 p-4 hidden">
         <a href="#join" class="block px-4 py-3 rounded-2xl hover:bg-white/5">Join the Pod</a>
       </div>
     </div>
 
-    <!-- hero content -->
+    <!-- Hero content with glass panel -->
     <div class="relative z-10 max-w-6xl mx-auto px-4 pb-10 pt-10 md:pt-16">
-      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-        Ride the meme wave.<br class="hidden md:block" />
-        The narwhal taking on the penguin meta.
-      </h1>
+      <div class="hero-glass p-5 md:p-7 max-w-3xl">
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+          Ride the meme wave.<br class="hidden md:block" />
+          The narwhal taking on the penguin meta.
+        </h1>
 
-      <div class="mt-5 flex flex-wrap items-center gap-3">
-        <span class="glass text-white/90 px-4 py-2 rounded-2xl">Chain: <b class="text-white">Abstract</b></span>
-        <span class="glass text-white/90 px-4 py-2 rounded-2xl flex items-center gap-2">
-          CA: <span id="ca" class="font-mono">TBA</span>
-          <button class="ml-1 px-2 py-1 rounded-lg bg-yellow-400/90 text-black text-sm font-bold" onclick="copyCA()" aria-label="Copy contract address">Copy</button>
-        </span>
-      </div>
+        <div class="mt-5 flex flex-wrap items-center gap-3">
+          <span class="card text-white/90 px-4 py-2 rounded-2xl">Chain: <b class="text-white">Abstract</b></span>
+          <span class="card text-white/90 px-4 py-2 rounded-2xl flex items-center gap-2">
+            CA: <span id="ca" class="font-mono">0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07</span>
+            <button class="ml-1 px-2 py-1 rounded-lg bg-yellow-400/90 text-black text-sm font-bold" onclick="copyCA()" aria-label="Copy contract address">Copy</button>
+          </span>
+        </div>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="btn-primary px-5 py-3 rounded-xl">DEXScreener</a>
-        <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn px-5 py-3 rounded-xl">Twitter</a>
-        <a href="https://t.me/NarrTheNarwhalonabs" class="btn px-5 py-3 rounded-xl">Telegram</a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="btn-primary px-5 py-3 rounded-xl">DEXScreener</a>
+          <a href="https://x.com/NarrTheNarwhal?t=MYg_uEeM-DReqKwPrDvA7Q&s=09" class="btn px-5 py-3 rounded-xl">Twitter</a>
+          <a href="https://t.me/NarrTheNarwhalonabs" class="btn px-5 py-3 rounded-xl">Telegram</a>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- OG IMAGE BLOCK (smaller, centered, with breathing room) -->
+    <!-- OG IMAGE (tight and intentional) -->
     <section class="max-w-6xl mx-auto px-4 pt-10 pb-4">
       <div class="og-card mx-auto max-w-2xl">
         <img src="og_narpe.jpg" alt="NARR key visual" class="w-full h-auto block" loading="lazy" decoding="async">
@@ -264,7 +254,7 @@
     </div>
   </footer>
 
-  <!-- Sticky mobile CTA -->
+  <!-- Sticky CTA -->
   <div id="stickyCTA" class="fixed bottom-4 inset-x-4 z-50">
     <a href="#join" class="hidden w-full text-center px-4 py-3 rounded-xl btn-primary" id="stickyLink">Join the Pod</a>
   </div>
@@ -301,11 +291,11 @@
 
     // ensure hero video plays on iOS
     const vid = document.getElementById('heroVideo');
-    function forcePlay(){ if (!vid) return; const p = vid.play?.(); if (p?.catch) p.catch(()=>{}); }
+    function forcePlay(){ const p = vid.play?.(); if (p?.catch) p.catch(()=>{}); }
     document.addEventListener('visibilitychange', ()=>{ if (!document.hidden) forcePlay(); }, {passive:true});
     window.addEventListener('touchend', forcePlay, { once:true, passive:true });
 
-    // bubbles animation (reliable sizing + start)
+    // bubbles animation
     (function(){
       const c = document.getElementById('bubbles');
       const ctx = c.getContext('2d');
@@ -318,6 +308,7 @@
         ctx.setTransform(dpr,0,0,dpr,0,0);
       }
       function spawn(){
+        bubbles.length = 0;
         for(let i=0;i<22;i++){
           bubbles.push({
             x: Math.random()*W,
@@ -342,7 +333,7 @@
         requestAnimationFrame(tick);
       }
       resize(); spawn(); tick();
-      window.addEventListener('resize', resize);
+      window.addEventListener('resize', ()=>{resize(); spawn();});
     })();
   </script>
 </body>
