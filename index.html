@@ -12,12 +12,9 @@
     .shadow-deep{box-shadow:0 8px 30px rgba(0,0,0,.35)}
     html{scroll-behavior:smooth}
     .brand-grad{background:linear-gradient(90deg,#19E3D6 0%,#8EF8D0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-    /* Ajouts demandés */
-    .logo-dollar{color:#F7D047;text-shadow:0 1px 0 rgba(0,0,0,.6), 0 0 8px rgba(247,208,71,.45);font-weight:900}
     .title-shadow{text-shadow:0 3px 10px rgba(0,0,0,.65), 0 1px 0 rgba(0,0,0,.8)}
     .chip-shadow{text-shadow:0 2px 6px rgba(0,0,0,.55)}
-    .hl{color:#F7D047;font-weight:700}
+    .hl-yellow{color:#F7D047;font-weight:800}
   </style>
 </head>
 <body class="min-h-full text-white selection:bg-teal-300 selection:text-black">
@@ -27,14 +24,14 @@
     <div class="mx-auto max-w-6xl px-4 py-3">
       <div class="flex items-center justify-between rounded-2xl bg-[#0B1220]/80 backdrop-blur-sm border border-white/10 px-4 py-2 shadow-deep">
         <div class="font-extrabold text-xl">
-          <span class="logo-dollar">$</span><span class="brand-grad">NARR</span>
+          <span class="brand-grad">$</span><span class="brand-grad">NARR</span>
         </div>
         <button onclick="toggleMenu()" class="rounded-2xl border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 transition">Menu</button>
       </div>
     </div>
   </header>
 
-  <!-- Drawer over hero (NOIR opaque) -->
+  <!-- Drawer over hero (NOIR) -->
   <div id="drawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/60" onclick="toggleMenu()"></div>
     <div class="mx-4 mt-24 rounded-3xl bg-black text-white border border-white/10 p-4 shadow-deep">
@@ -61,10 +58,10 @@
         <!-- Badges -->
         <div class="flex flex-wrap gap-2 mt-5 chip-shadow">
           <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs">
-            <span class="text-white/70">Chain:</span> <span class="font-semibold hl">Abstract</span>
+            <span class="text-white/70">Chain:</span> <span class="font-semibold">Abstract</span>
           </span>
 
-          <!-- CA row: responsive, no overflow -->
+          <!-- CA row -->
           <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs max-w-full">
             <span class="text-white/70">CA:</span>
             <code id="ca" class="tracking-tight truncate max-w-[56vw] sm:max-w-[46vw] md:max-w-[36vw]">
@@ -100,7 +97,7 @@
     <section id="what" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
       <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">WHAT $NARR IS</h2>
       <div class="rounded-2xl card p-6 text-white/90">
-        A community driven token built for <span class="hl">speed</span>, with sharp visuals and a <span class="hl">character</span> you can spot from a mile away.
+        A community driven token built for speed, with sharp visuals and a character you can spot from a mile away.
         No corporate fluff, just culture, momentum and a crew that ships.
       </div>
     </section>
@@ -108,7 +105,7 @@
     <section id="meta" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
       <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE COUNTER META</h2>
       <div class="rounded-2xl card p-6 text-white/90">
-        Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. <span class="hl">$NARR</span> arrived.
+        Timelines got buried by penguins, cute, safe, predictable. Then a horn cut through the water. $NARR arrived.
         If they waddle we spear. If they echo we make noise. The feed needed a new main character and we showed up with a wave.
       </div>
     </section>
@@ -121,18 +118,29 @@
       </div>
     </section>
 
+    <!-- PLANNED FEATURES split in 3 cards -->
     <section id="features" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">PLANNED FEATURES</h2>
-      <div class="rounded-2xl card p-6 text-white/90">
-        <span class="hl">Weekly events</span> and <span class="hl">giveaways</span>. Community raids with <span class="hl">Abstract</span> friends, coordinated stunts and playful rivalry with the penguin crowd.
-        A major future <span class="hl">Dapp</span> is in the works with details to be revealed soon.
+      <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-6">PLANNED FEATURES</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-2xl card p-6">
+          <h3 class="hl-yellow text-xl mb-2">Weekly Events & Giveaways</h3>
+          <p class="text-white/90">Raids, contests, surprises. Every week is a new wave.</p>
+        </div>
+        <div class="rounded-2xl card p-6">
+          <h3 class="hl-yellow text-xl mb-2">Collabs & Community Raids</h3>
+          <p class="text-white/90">Cross-project stunts with Abstract friends, coordinated meme raids and playful rivalry with the penguin crowd.</p>
+        </div>
+        <div class="rounded-2xl card p-6">
+          <h3 class="hl-yellow text-xl mb-2">Major Future Dapp</h3>
+          <p class="text-white/90">In the works with details to be revealed soon.</p>
+        </div>
       </div>
     </section>
 
     <section id="playbook" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
       <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">THE PLAYBOOK</h2>
       <div class="rounded-2xl card p-6 text-white/90">
-        Run <span class="hl">weekly events</span>. Drop surprise <span class="hl">giveaways</span>. Highlight the best community posts.
+        Run weekly events. Drop surprise giveaways. Highlight the best community posts.
         Share art people actually use as PFPs. Every moment becomes movement, every wave builds momentum.
       </div>
     </section>
@@ -141,7 +149,7 @@
       <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">Join the Pod</h2>
       <div class="rounded-2xl glass p-6 text-white shadow-deep">
         <p class="text-white/90">
-          We will not promise the world, we will flood the timeline. <span class="hl">$NARR</span> turns holders into a pod that is loud, loyal and impossible to ignore.
+          We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore.
           The penguins can keep the ice. We take the ocean.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
@@ -182,7 +190,6 @@
         setTimeout(()=>note.remove(), 1200);
       });
     }
-    // best-effort autoplay
     window.addEventListener('load', ()=>{
       const v = document.querySelector('#hero video');
       try { const p=v.play(); if(p?.catch) p.catch(()=>{}); } catch(e){}
