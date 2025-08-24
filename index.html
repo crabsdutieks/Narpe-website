@@ -15,7 +15,6 @@
     .title-shadow{text-shadow:0 3px 10px rgba(0,0,0,.65), 0 1px 0 rgba(0,0,0,.8)}
     .chip-shadow{text-shadow:0 2px 6px rgba(0,0,0,.55)}
     .hl-yellow{color:#F7D047;font-weight:800}
-    /* >>> Fix couleur : enlever toute ombre/filtre sur le span du H1 */
     .no-shadow{ text-shadow:none !important; filter:none !important; }
   </style>
 </head>
@@ -37,8 +36,9 @@
   <div id="drawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/30" onclick="toggleMenu()"></div>
     <div class="mx-4 mt-24 rounded-3xl bg-black text-white border border-white/10 p-4 shadow-deep">
-      <!-- Remplacé par Links + scroll garanti -->
-      <a href="#join" onclick="gotoJoin(event)" class="block px-4 py-3 rounded-xl hover:bg-white/10">Links</a>
+      <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" class="block px-4 py-3 rounded-xl hover:bg-white/10">DEXScreener</a>
+      <a href="https://x.com/NarrTheNarwhal" target="_blank" class="block px-4 py-3 rounded-xl hover:bg-white/10">X</a>
+      <a href="https://t.me/NarrTheNarwhalonabs" target="_blank" class="block px-4 py-3 rounded-xl hover:bg-white/10">Telegram</a>
     </div>
   </div>
 
@@ -55,7 +55,6 @@
       <div class="w-full rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep md:translate-y-6">
         <h1 class="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl title-shadow">
           Ride the Meme Wave
-          <!-- même gradient que le logo, sans ombre -->
           <span class="block brand-grad no-shadow">$NARR on Abstract</span>
         </h1>
 
@@ -80,7 +79,7 @@
           <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
              class="px-5 py-3 rounded-xl bg-[#19E3D6] text-black font-bold shadow-lg shadow-[#19E3D6]/30 hover:scale-[1.02] transition">DEXScreener</a>
           <a href="https://x.com/NarrTheNarwhal"
-             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Twitter</a>
+             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">X</a>
           <a href="https://t.me/NarrTheNarwhalonabs"
              class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Telegram</a>
         </div>
@@ -172,7 +171,7 @@
           <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
              class="px-5 py-3 rounded-xl bg-[#19E3D6] text-black font-bold shadow-lg shadow-[#19E3D6]/30 hover:scale-[1.02] transition">DEXScreener</a>
           <a href="https://x.com/NarrTheNarwhal"
-             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Twitter / X</a>
+             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">X</a>
           <a href="https://t.me/NarrTheNarwhalonabs"
              class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Telegram</a>
         </div>
@@ -184,7 +183,7 @@
     <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-white/60 text-sm">© <span id="year"></span> NARR • Not financial advice</p>
       <div class="flex gap-3">
-        <a href="https://x.com/NarrTheNarwhal" class="text-white/80 hover:text-white">Twitter</a>
+        <a href="https://x.com/NarrTheNarwhal" class="text-white/80 hover:text-white">X</a>
         <a href="https://t.me/NarrTheNarwhalonabs" class="text-white/80 hover:text-white">Telegram</a>
         <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" class="text-white/80 hover:text-white">DEXScreener</a>
       </div>
@@ -195,16 +194,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     function toggleMenu(){ document.getElementById('drawer').classList.toggle('hidden'); }
-
-    // Scroll garanti vers #join depuis le menu
-    function gotoJoin(e){
-      if(e) e.preventDefault();
-      toggleMenu(); // ferme d'abord
-      setTimeout(()=>{ 
-        const el = document.querySelector('#join');
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      }, 150);
-    }
 
     function copyCA(){
       const el = document.getElementById('ca');
@@ -224,4 +213,3 @@
   </script>
 </body>
 </html>
-```0
