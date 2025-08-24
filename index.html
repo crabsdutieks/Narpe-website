@@ -1,136 +1,150 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>$NARR – Ride the Meme Wave</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0b0e12;
-      --panel:#0f1319;
-      --panel-2:#131822;
-      --text:#f2f5f7;
-      --muted:#b8c2cc;
-      --teal:#11c5bf;
-      --teal-2:#12a3a0;
-      --yellow:#ffd447; /* accent façon ancien site */
-      --chip:#ffffff1a;
-      --stroke:#ffffff1f;
-      --glass:rgba(16,20,26,.45);
-      --glass-border:rgba(255,255,255,.14);
-      --btn:#0fe0d8;
-      --btn-text:#072726;
-      --link:#a9b7ff;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --bg:#0b0e12; --panel:#0f1319; --panel2:#131822;
+      --text:#f2f5f7; --muted:#b8c2cc;
+      --teal:#11c5bf; --teal2:#0fa7a3;
+      --yellow:#ffd447; --chip:#ffffff14; --stroke:#ffffff26;
+      --btn:#0fe0d8; --btnText:#062b29; --link:#a9b7ff;
       --radius:22px;
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--text);font-family:Outfit,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    a{color:var(--link);text-decoration:none}
-    .container{max-width:1200px;margin-inline:auto;padding-inline:24px}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.25rem;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--text);transition:.2s}
-    .btn:hover{background:rgba(255,255,255,.12)}
-    .btn-primary{background:var(--btn);border-color:transparent;color:var(--btn-text);font-weight:800}
-    .chips{display:flex;flex-wrap:wrap;gap:.75rem;margin:.9rem 0 1.1rem}
-    .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border-radius:999px;background:var(--chip);border:1px solid var(--stroke);color:var(--text)}
-    .chip .label{color:var(--muted)}
-    .chip.yellow{background:rgba(255,212,71,.14);border-color:rgba(255,212,71,.32)}
-    .copy-wrap{display:flex;align-items:center;gap:.6rem;min-width:0}
-    .copy-box{flex:1;min-width:0;padding:.55rem .8rem;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--stroke);color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .copy-btn{padding:.45rem .7rem;border-radius:10px;background:var(--yellow);color:#130d00;font-weight:800;border:none;cursor:pointer}
-    .logo{display:flex;align-items:center;gap:.6rem;font-weight:900;letter-spacing:.4px}
-    .logo .dollar{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:linear-gradient(180deg,#12c7c1,#0c8c88);color:#062624;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.25)}
-    .logo span.name{color:#fff}
+
+    /* NAV */
     header.nav{position:fixed;inset:12px 12px auto 12px;z-index:50}
-    .nav-wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 18px;border-radius:20px;background:linear-gradient(180deg,rgba(20,26,33,.88),rgba(14,18,24,.88));border:1px solid var(--glass-border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
-    .menu-btn{padding:.6rem 1.1rem;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.06);color:var(--text);cursor:pointer}
+    .nav-wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-radius:18px;background:linear-gradient(180deg,rgba(20,26,33,.88),rgba(14,18,24,.88));border:1px solid #ffffff22;backdrop-filter:blur(8px)}
+    .logo{display:flex;align-items:center;gap:.55rem;font-weight:900}
+    .logo .mark{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:linear-gradient(180deg,#12c7c1,#0c8c88);color:#021a19;font-weight:900;letter-spacing:.2px}
+    .logo .name{color:#fff}
+    .menu-btn{padding:.55rem 1rem;border-radius:14px;border:1px solid #ffffff26;background:#ffffff12;color:#fff;cursor:pointer}
+
     .drawer{position:fixed;inset:0;display:none;z-index:60}
     .drawer.open{display:block}
-    .drawer .scrim{position:absolute;inset:0;background:rgba(0,0,0,.4)}
-    .drawer .card{position:absolute;right:12px;left:12px;top:76px;border-radius:20px;padding:20px;background:rgba(16,20,26,.5);border:1px solid var(--glass-border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-    .drawer a{display:block;padding:14px 12px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.06);color:var(--text)}
-    .drawer a:hover{background:rgba(255,255,255,.12)}
-    /* hero */
-    .hero{position:relative;min-height:72vh;display:grid;place-items:center;overflow:hidden}
-    @media(min-width:1100px){.hero{min-height:78vh}}
-    .hero video,.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .hero .fade{position:absolute;inset:auto 0 -1px 0;height:140px;background:linear-gradient(180deg,rgba(11,14,18,0),rgba(11,14,18,1))}
-    .hero .card{position:relative;z-index:1;max-width:980px;margin:110px auto 0;padding:28px 28px;border-radius:28px;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--glass-border);box-shadow:var(--shadow)}
-    .hero h1{font-size:clamp(34px,4.2vw,56px);line-height:1.04;margin:0 0 .4rem;font-weight:900;color:#fff}
-    .hero .sub{font-size:clamp(24px,3.2vw,40px);line-height:1.08;margin:0 0 1rem;font-weight:900;color:var(--teal)}
-    .hero .actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.6rem}
-    /* sections */
+    .drawer .scrim{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    .drawer .card{position:absolute;right:12px;left:12px;top:76px;border-radius:16px;padding:16px;background:rgba(16,20,26,.55);border:1px solid #ffffff22;backdrop-filter:blur(10px)}
+    .drawer a{display:block;padding:14px;border-radius:12px;border:1px solid #ffffff24;background:#ffffff10;color:#fff}
+    .drawer a:hover{background:#ffffff18}
+
+    /* HERO */
+    .hero{position:relative;min-height:76vh;display:block;overflow:hidden}
+    @media(min-width:1100px){.hero{min-height:82vh}}
+    .hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero .title-stack{
+      position:absolute;left:6vw;right:6vw;top:22vh;z-index:1;
+      text-shadow:0 6px 18px rgba(0,0,0,.40);
+    }
+    .title-stack h1{
+      margin:0 0 .3rem 0;line-height:1.04;
+      font-size:clamp(34px,4.6vw,64px);font-weight:900;color:#fff;
+      display:inline;
+      background:
+        linear-gradient( to top, rgba(255,212,71,.48) 0, rgba(255,212,71,.48) 44%, rgba(255,212,71,0) 44% );
+      box-decoration-break: clone; -webkit-box-decoration-break: clone;
+      padding:0 .15rem;
+    }
+    .title-stack .sub{
+      font-size:clamp(24px,3.2vw,44px);font-weight:900;
+      color:var(--teal);
+    }
+
+    /* info bar collée en bas du hero */
+    .hero .infobar{
+      position:absolute;left:3vw;right:3vw;bottom:20px;z-index:1;
+      display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;
+      background:linear-gradient(180deg,rgba(12,16,22,.72),rgba(12,16,22,.78));
+      border:1px solid #ffffff24;border-radius:16px;padding:10px 12px;
+      backdrop-filter:blur(8px)
+    }
+    .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .85rem;border-radius:999px;border:1px solid var(--stroke);background:#ffffff10;color:#fff}
+    .chip .label{color:var(--muted)}
+    .chip.yellow{background:rgba(255,212,71,.16);border-color:rgba(255,212,71,.36);color:#13110a}
+    .chip.yellow b{color:#13110a}
+    .copy-wrap{display:flex;align-items:center;gap:.6rem;min-width:240px;flex:1}
+    .copy-box{flex:1;min-width:0;padding:.55rem .8rem;border-radius:999px;background:#ffffff10;border:1px solid var(--stroke);color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .copy-btn{padding:.45rem .7rem;border-radius:10px;background:var(--yellow);color:#130d00;font-weight:800;border:none;cursor:pointer}
+    .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.1rem;border-radius:14px;border:1px solid var(--stroke);background:#ffffff12;color:#fff;text-decoration:none}
+    .btn:hover{background:#ffffff1c}
+    .btn-primary{background:var(--btn);border-color:transparent;color:var(--btnText);font-weight:900}
+
+    .hero .fade{position:absolute;inset:auto 0 -1px 0;height:120px;background:linear-gradient(180deg,rgba(11,14,18,0),rgba(11,14,18,1))}
+
+    /* Sections */
+    .container{max-width:1200px;margin-inline:auto;padding-inline:24px}
     section{padding:56px 0}
-    h2.kicker{color:var(--teal);letter-spacing:1px;font-size:22px;margin:0 0 16px;font-weight:900}
     .grid{display:grid;grid-template-columns:1fr;gap:22px}
     @media(min-width:960px){.grid{grid-template-columns:280px 1fr;align-items:start}}
-    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:18px 18px}
+    h2.kicker{color:var(--teal);letter-spacing:.5px;font-size:22px;margin:0 0 16px;font-weight:900}
+    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:18px}
     .muted{color:var(--muted)}
-    /* og image block */
-    .og{background:var(--panel-2);border:1px solid var(--stroke);border-radius:22px;padding:14px}
-    .og img{width:100%;border-radius:18px;display:block}
-    /* footer */
+
+    /* OG */
+    .og{background:var(--panel2);border:1px solid var(--stroke);border-radius:22px;padding:14px}
+    .og img{display:block;width:100%;border-radius:18px}
+
+    /* Footer */
     footer{border-top:1px solid var(--stroke);padding:28px 0;color:var(--muted)}
   </style>
 </head>
-
 <body>
+
   <!-- NAV -->
   <header class="nav">
     <div class="nav-wrap">
       <div class="logo">
-        <span class="dollar">$</span>
-        <span class="name">NARR</span>
+        <span class="mark">$</span><span class="name">NARR</span>
       </div>
       <button class="menu-btn" id="openMenu">Menu</button>
     </div>
     <div class="drawer" id="drawer">
       <div class="scrim" id="closeMenu"></div>
-      <div class="card container">
+      <div class="card">
         <a href="#join">Join the Pod</a>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO sans gros « carré » -->
   <section class="hero" id="top">
     <video id="heroVideo" autoplay muted playsinline loop poster="hero-poster.jpeg">
-      <source src="hero-video.mp4" type="video/mp4" />
-      <img class="bg" src="hero-poster.jpeg" alt="Hero background" />
+      <source src="hero-video.mp4" type="video/mp4"/>
+      <img class="poster" src="hero-poster.jpeg" alt="Hero background"/>
     </video>
 
-    <div class="card container">
+    <div class="title-stack">
       <h1>Ride the Meme Wave</h1>
       <div class="sub">$NARR on Abstract</div>
+    </div>
 
-      <!-- chips / important facts with yellow accent like old site -->
-      <div class="chips">
-        <div class="chip"><span class="label">Chain:</span> <strong>Abstract</strong></div>
-        <div class="copy-wrap" style="flex:1">
-          <div class="copy-box" id="caText">0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07</div>
-          <button class="copy-btn" id="copyBtn">Copy</button>
-        </div>
+    <div class="infobar">
+      <div class="chip"> <span class="label">Chain:</span> <span class="chip yellow"><b>Abstract</b></span></div>
+
+      <div class="copy-wrap" style="flex:1">
+        <div class="copy-box" id="caText">0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07</div>
+        <button class="copy-btn" id="copyBtn">Copy</button>
       </div>
 
-      <div class="actions">
-        <a class="btn btn-primary" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener">DEXScreener</a>
-        <a class="btn" href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener">Twitter</a>
-        <a class="btn" href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener">Telegram</a>
-      </div>
+      <a class="btn btn-primary" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener">DEXScreener</a>
+      <a class="btn" href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener">Twitter</a>
+      <a class="btn" href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener">Telegram</a>
     </div>
 
     <div class="fade"></div>
   </section>
 
-  <!-- OG VISUAL (smaller, better padding) -->
+  <!-- OG IMAGE -->
   <section class="container" id="og">
-    <div class="og">
-      <img src="og_narpe.jpg" alt="NARR OG visual" loading="lazy">
-    </div>
+    <div class="og"><img src="og_narpe.jpg" alt="NARR OG visual" loading="lazy"></div>
   </section>
 
   <!-- WHAT -->
@@ -148,7 +162,7 @@
     <div class="grid">
       <h2 class="kicker">THE COUNTER META</h2>
       <div class="card">
-        <p>Timelines got buried by penguins — cute, safe, predictable. Then a horn cut through the water. <span style="background:rgba(255,212,71,.15);padding:.1rem .3rem;border-radius:.4rem">NARR arrived</span>. If they waddle we spear. If they echo we make noise.</p>
+        <p>Timelines got buried by penguins — cute, safe, predictable. Then a horn cut through the water. <span style="background:rgba(255,212,71,.18);padding:.1rem .35rem;border-radius:.4rem;font-weight:800;color:#111">NARR arrived</span>. If they waddle we spear. If they echo we make noise.</p>
       </div>
     </div>
   </section>
@@ -190,9 +204,9 @@
       <div class="card">
         <p class="muted">We will not promise the world, we will flood the timeline. $NARR turns holders into a pod that is loud, loyal and impossible to ignore. The penguins can keep the ice. We take the ocean.</p>
         <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:12px">
-          <a class="btn btn-primary" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener">DEXScreener</a>
-          <a class="btn" href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener">Twitter</a>
-          <a class="btn" href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener">Telegram</a>
+          <a class="btn btn-primary" href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank">DEXScreener</a>
+          <a class="btn" href="https://x.com/NarrTheNarwhal" target="_blank">Twitter</a>
+          <a class="btn" href="https://t.me/NarrTheNarwhalonabs" target="_blank">Telegram</a>
         </div>
       </div>
     </div>
@@ -202,9 +216,9 @@
     <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <div>© <span id="year"></span> NARR • Not financial advice</div>
       <div style="display:flex;gap:12px">
-        <a href="https://x.com/NarrTheNarwhal" target="_blank" rel="noopener">Twitter</a>
-        <a href="https://t.me/NarrTheNarwhalonabs" target="_blank" rel="noopener">Telegram</a>
-        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank" rel="noopener">DEXScreener</a>
+        <a href="https://x.com/NarrTheNarwhal" target="_blank">Twitter</a>
+        <a href="https://t.me/NarrTheNarwhalonabs" target="_blank">Telegram</a>
+        <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c" target="_blank">DEXScreener</a>
       </div>
     </div>
   </footer>
@@ -213,36 +227,26 @@
     // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // drawer
+    // menu
     const drawer = document.getElementById('drawer');
-    const openMenu = document.getElementById('openMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    openMenu.onclick = ()=> drawer.classList.add('open');
+    document.getElementById('openMenu').onclick = ()=> drawer.classList.add('open');
     document.getElementById('closeMenu').onclick = ()=> drawer.classList.remove('open');
 
     // copy CA
     document.getElementById('copyBtn').addEventListener('click',()=>{
       const text = document.getElementById('caText').textContent.trim();
       navigator.clipboard.writeText(text).then(()=>{
-        const b = document.getElementById('copyBtn');
-        const old = b.textContent;
-        b.textContent='Copied';
-        setTimeout(()=> b.textContent=old, 1100);
+        const b = document.getElementById('copyBtn'); const old=b.textContent;
+        b.textContent='Copied'; setTimeout(()=> b.textContent=old, 1100);
       });
     });
 
-    // mobile hero fit + prevent overflow of CA row
-    const card = document.querySelector('.hero .card');
-    function fitHero(){
-      const vw = window.innerWidth;
-      if(vw < 420){
-        card.style.marginTop = '96px';
-      } else {
-        card.style.marginTop = '110px';
-      }
+    // petite adaptation hauteur hero
+    function tuneHero(){
+      const hero = document.querySelector('.hero');
+      if(window.innerWidth<420){ hero.style.minHeight = '78vh'; } else { hero.style.minHeight='82vh'; }
     }
-    window.addEventListener('resize', fitHero);
-    fitHero();
+    window.addEventListener('resize',tuneHero); tuneHero();
   </script>
 </body>
 </html>
