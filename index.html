@@ -5,16 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#0B1220" />
   <title>$NARR — Ride the Meme Wave</title>
-  <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ---- Custom utilities ---- */
-    .hero-bg { background-image:url('/hero.jpeg'); }
-    @media (max-width:640px){ .hero-bg{ background-position:center top; } }
-    .glass   { background: rgba(255,255,255,.08); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.12); }
-    .card    { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10); }
-    .shadow-deep { box-shadow: 0 8px 30px rgba(0,0,0,.35); }
-    html { scroll-behavior: smooth; }
+    .glass{background:rgba(255,255,255,.08);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12)}
+    .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
+    .shadow-deep{box-shadow:0 8px 30px rgba(0,0,0,.35)}
+    html{scroll-behavior:smooth}
+    .brand-grad{background:linear-gradient(90deg,#19E3D6 0%,#8EF8D0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
   </style>
 </head>
 <body class="min-h-full text-white selection:bg-teal-300 selection:text-black">
@@ -23,13 +20,15 @@
   <header class="fixed top-0 inset-x-0 z-40">
     <div class="mx-auto max-w-6xl px-4 py-3">
       <div class="flex items-center justify-between rounded-2xl bg-[#0B1220]/80 backdrop-blur-sm border border-white/10 px-4 py-2 shadow-deep">
-        <div class="font-extrabold text-white text-xl">$NARR</div>
+        <div class="font-extrabold text-xl">
+          <span class="text-white/90">$</span><span class="brand-grad">NARR</span>
+        </div>
         <button onclick="toggleMenu()" class="rounded-2xl border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 transition">Menu</button>
       </div>
     </div>
   </header>
 
-  <!-- Drawer / Menu (over hero, not black) -->
+  <!-- Drawer over hero -->
   <div id="drawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/35" onclick="toggleMenu()"></div>
     <div class="mx-4 mt-24 rounded-3xl glass p-4 text-white shadow-deep">
@@ -37,9 +36,8 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <section id="hero" class="relative overflow-hidden">
-    <!-- Background video + light darkening -->
+  <!-- HERO: taller + centered -->
+  <section id="hero" class="relative min-h-[100svh] md:min-h-[92vh] overflow-hidden">
     <div class="absolute inset-0">
       <video class="absolute inset-0 w-full h-full object-cover" autoplay muted playsinline loop poster="/hero.jpeg">
         <source src="/hero.mp4" type="video/mp4" />
@@ -47,12 +45,11 @@
       <div class="absolute inset-0 bg-black/30"></div>
     </div>
 
-    <!-- Content -->
-    <div class="relative max-w-6xl mx-auto px-4 pt-28 pb-12">
-      <div class="rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep">
+    <div class="relative max-w-6xl mx-auto px-4 pt-32 pb-12 h-full flex items-end md:items-center">
+      <div class="w-full rounded-3xl glass p-6 sm:p-8 md:p-10 text-white shadow-deep md:translate-y-6">
         <h1 class="font-extrabold leading-tight text-4xl sm:text-5xl lg:text-6xl">
           Ride the Meme Wave
-          <span class="block text-[#19E3D6] drop-shadow-[0_2px_0_rgba(0,0,0,0.4)]">$NARR on Abstract</span>
+          <span class="block brand-grad drop-shadow-[0_2px_0_rgba(0,0,0,0.4)]">$NARR on Abstract</span>
         </h1>
 
         <!-- Badges -->
@@ -60,10 +57,14 @@
           <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs">
             <span class="text-white/70">Chain:</span> <span class="font-semibold">Abstract</span>
           </span>
-          <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs">
+
+          <!-- CA row: responsive, no overflow -->
+          <span class="inline-flex items-center gap-2 rounded-2xl bg-white/10 border border-white/15 px-3 py-1.5 text-sm md:text-xs max-w-full">
             <span class="text-white/70">CA:</span>
-            <code id="ca" class="tracking-tight">0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07</code>
-            <button onclick="copyCA()" class="ml-1 rounded-lg bg-yellow-300 text-black text-xs font-bold px-2 py-1">Copy</button>
+            <code id="ca" class="tracking-tight truncate max-w-[56vw] sm:max-w-[46vw] md:max-w-[36vw]">
+              0x7797B9b0D81EbA4ED67f7D4da90bAbce410C0b07
+            </code>
+            <button onclick="copyCA()" class="shrink-0 rounded-lg bg-yellow-300 text-black text-xs font-bold px-2 py-1">Copy</button>
           </span>
         </div>
 
@@ -72,26 +73,24 @@
           <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
              class="px-5 py-3 rounded-xl bg-[#19E3D6] text-black font-bold shadow-lg shadow-[#19E3D6]/30 hover:scale-[1.02] transition">DEXScreener</a>
           <a href="https://x.com/NarrTheNarwhal"
-             class="px-5 py-3 rounded-xl bg-white/15 border border-white/25 text-white hover:bg-white/25 transition">Twitter</a>
+             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Twitter</a>
           <a href="https://t.me/NarrTheNarwhalonabs"
-             class="px-5 py-3 rounded-xl bg-white/15 border border-white/25 text-white hover:bg-white/25 transition">Telegram</a>
+             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Telegram</a>
         </div>
       </div>
     </div>
 
-    <!-- Soft fade to black -->
     <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-black"></div>
   </section>
 
-  <!-- OG image, better integrated -->
+  <!-- OG image -->
   <section class="max-w-5xl mx-auto px-4 pt-10 pb-6">
     <img src="/og_narpe.jpg" alt="NARR OG artwork"
          class="w-full rounded-3xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.4)] object-cover" />
   </section>
 
-  <!-- CONTENT SECTIONS (titles above cards) -->
-  <main class="relative">
-
+  <!-- CONTENT -->
+  <main>
     <section id="what" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
       <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">WHAT $NARR IS</h2>
       <div class="rounded-2xl card p-6 text-white/90">
@@ -132,7 +131,6 @@
       </div>
     </section>
 
-    <!-- Join -->
     <section id="join" class="max-w-6xl mx-auto px-4 py-12 sm:py-16">
       <h2 class="font-extrabold text-3xl sm:text-4xl text-[#4FE9E3] drop-shadow-[0_1px_0_rgba(0,0,0,0.6)] mb-3">Join the Pod</h2>
       <div class="rounded-2xl glass p-6 text-white shadow-deep">
@@ -144,15 +142,14 @@
           <a href="https://dexscreener.com/abstract/0x6d16c2a285de1b8652868ed9d36a12f7ffb4573c"
              class="px-5 py-3 rounded-xl bg-[#19E3D6] text-black font-bold shadow-lg shadow-[#19E3D6]/30 hover:scale-[1.02] transition">DEXScreener</a>
           <a href="https://x.com/NarrTheNarwhal"
-             class="px-5 py-3 rounded-xl bg-white/15 border border-white/25 text-white hover:bg-white/25 transition">Twitter / X</a>
+             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Twitter / X</a>
           <a href="https://t.me/NarrTheNarwhalonabs"
-             class="px-5 py-3 rounded-xl bg-white/15 border border-white/25 text-white hover:bg-white/25 transition">Telegram</a>
+             class="px-5 py-3 rounded-xl bg-white/20 border border-white/30 text-white hover:bg-white/30 transition">Telegram</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="mt-10 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-white/60 text-sm">© <span id="year"></span> NARR • Not financial advice</p>
@@ -164,14 +161,10 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function toggleMenu(){
-      const d = document.getElementById('drawer');
-      d.classList.toggle('hidden');
-    }
+    function toggleMenu(){ document.getElementById('drawer').classList.toggle('hidden'); }
     function copyCA(){
       const el = document.getElementById('ca');
       const txt = el.textContent.trim();
@@ -183,12 +176,10 @@
         setTimeout(()=>note.remove(), 1200);
       });
     }
-    // Try to auto-play hero video if browser blocked first attempt
+    // best-effort autoplay
     window.addEventListener('load', ()=>{
       const v = document.querySelector('#hero video');
-      if(!v) return;
-      const p = v.play?.();
-      if(p && typeof p.catch === 'function') p.catch(()=>{ /* silent */ });
+      try { const p=v.play(); if(p?.catch) p.catch(()=>{}); } catch(e){}
     });
   </script>
 </body>
